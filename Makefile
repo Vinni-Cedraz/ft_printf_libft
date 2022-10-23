@@ -6,7 +6,7 @@
 #    By: tkomeno <tkomeno@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/30 02:45:29 by tkomeno           #+#    #+#              #
-#    Updated: 2022/10/23 00:37:29 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/10/23 01:09:29 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ OBJS = $(OBJS_1) $(OBJS_2)
 
 INCLUDES = -I./includes -I./libraries/libft
 
-FLAGS = cc -g -Wall -Wextra -Werror 
+FLAGS = cc -g -Wall -Wextra -Werror
 
 AR = ar -cr
 

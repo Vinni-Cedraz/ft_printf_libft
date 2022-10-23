@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:33:15 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/22 23:36:14 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/23 00:50:17 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static int	print_preceding_string(char *str)
 	return (counter);
 }
 
-int	handle_pointer(void *ptr_addr)
+int	pointer(long value)
 {
 	int				counter;
 	char			*str;
 	unsigned long	addr;
 
-	addr = (unsigned long)ptr_addr;
+	addr = (unsigned long)value;
 	counter = print_preceding_string(PRECEDING_STR);
 	str = ft_itoa_base(addr, HEX_BASE);
 	counter += string(str);

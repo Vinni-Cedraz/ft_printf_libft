@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 13:21:51 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/23 00:03:14 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/23 00:50:43 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_counters
 int		ft_printf(const char *format, ...);
 int		is_format(char c);
 int		filter(char *str, va_list args);
-
 int		print_format(const char *str, va_list args);
 int		parser(int c, va_list args);
 int		string(char *str);
