@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pointer.c                                          :+:      :+:    :+:   */
+/*   _string.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 23:33:15 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/23 23:16:49 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022/10/22 23:33:25 by vcedraz-          #+#    #+#             */
+/*   Updated: 2022/10/24 00:15:56 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-static int	print_preceding_string(char *str)
+int	_string(char *str)
 {
-	t_ools prntd;
+	int i;
 
-	prntd.count = string(str);
-	return (prntd.count);
-}
-
-int	pointer(long value)
-{
-	t_ools type;
-
-	type.addr = (unsigned long)value;
-	type.count = print_preceding_string(PRECEDING_STR);
-	type.str = ft_itoa_base(type.addr, HEX_BASE);
-	type.count += string(type.str);
-	free(type.str);
-	return (type.count);
+	i = 0;
+	if (!str)
+		str = EXCEPTION_STR;
+	while (str[i] != '\0')
+		i += ft_putchar(str[i]);
+	return (i);
 }

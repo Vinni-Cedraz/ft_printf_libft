@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_format.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 23:23:05 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/22 23:25:25 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022/10/22 22:57:31 by vcedraz-          #+#    #+#             */
+/*   Updated: 2022/10/23 23:25:02 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
-int	is_format(char c)
+int	ft_printf(const char *fmt, ...)
 {
-	if (c == 'c'
-		|| c == 's'
-		|| c == 'p'
-		|| c == 'd'
-		|| c == 'i'
-		|| c == 'u'
-		|| c == 'x'
-		|| c == 'X'
-		|| c == '%')
-		return (1);
-	else
+	t_ools type;
+
+	type.str = ft_strdup(fmt);
+	if (!type.str)
 		return (0);
+	va_start(type.list, fmt);
+	type.counter += print_format(type.str, type.list);
+	va_end(type.list);
+	free((void *)type.str);
+	return (type.counter);
 }

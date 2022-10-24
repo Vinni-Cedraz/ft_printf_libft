@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   usdecimal.c                                        :+:      :+:    :+:   */
+/*   _hex.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 23:33:31 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/23 23:19:12 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022/10/22 23:28:18 by vcedraz-          #+#    #+#             */
+/*   Updated: 2022/10/24 00:16:48 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-int	usdecimal(long value)
+int	_hex(unsigned long long value, int is_upper)
 {
 	t_ools type;
 
-	type.str = ft_itoa_base(value, DECIMAL_BASE);
-	type.count = string(type.str);
+	if (is_upper)
+	{
+		type.str = ft_itoa_base(value, HEX_BASE_UPPER);
+		type.counter = _string(type.str);
+		free(type.str);
+		return (type.counter);
+	}
+	type.str = ft_itoa_base(value, HEX_BASE);
+	type.counter = _string(type.str);
 	free(type.str);
-	return (type.count);
+	return (type.counter);
 }

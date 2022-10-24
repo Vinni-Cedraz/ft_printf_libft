@@ -6,7 +6,7 @@
 #    By: tkomeno <tkomeno@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/30 02:45:29 by tkomeno           #+#    #+#              #
-#    Updated: 2022/10/24 00:40:10 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/10/24 00:46:39 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,9 @@ SRCS_1 = $(addprefix $(SOURCES_PATH)/,$(SOURCE_FILES))
 
 SRCS_2 = $(addprefix $(CONVERTERS_PATH)/,$(CONVERTERS_FILES))
 
-OBJS_1 = $(SRCS_1:.c=.o)
+OBJS_1 = $(addprefix $(OBJS_1_PATH)/,$(SOURCE_FILES:.c=.o))
 
-OBJS_2 = $(SRCS_2:.c=.o)
+OBJS_2 = $(addprefix $(OBJS_2_PATH)/,$(CONVERTERS_FILES:.c=.o))
 
 OBJS_3 = $(LIBFT_PATH)libft.a
 
@@ -60,9 +60,9 @@ $(NAME): mkdirs
 	$(MAKE) -C $(LIBFT_PATH)
 	$(FLAGS) $(INCLUDES) -c $(SRCS_2)
 	$(FLAGS) $(INCLUDES) -c $(SRCS_1)
-	$(AR) $(NAME) $(OBJS_3) $(OBJS_2) $(OBJS_1)
 	mv ./_*.o $(OBJS_2_PATH)
 	mv ./p*.o $(OBJS_1_PATH)
+	$(AR) $(NAME) $(OBJS_3) $(OBJS_2) $(OBJS_1)
 
 
 clean:

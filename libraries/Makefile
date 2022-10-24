@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 16:47:53 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/10/23 22:26:47 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/10/23 22:30:16 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CREATE_LIB = ar -rsc
 
 RM = rm -f
 
-OBJS_PATHS = ./objs/
+OBJS_PATH = ./objs/
 
 SOURCES = ft_isalpha.c \
   ft_isdigit.c \
@@ -81,17 +81,17 @@ BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 all : $(NAME) 
 
 mkdirs:
-	mkdir -p $(OBJS_PATHS)
+	mkdir -p $(OBJS_PATH)
 
 $(NAME) : mkdirs $(OBJECTS)
 	$(CREATE_LIB) $(NAME) $(OBJECTS)
-	mv $(OBJECTS) $(OBJS_PATHS)
+	mv $(OBJECTS) $(OBJS_PATH)
 
 $(OBJECTS) :
 	$(CC) $(FLAGS) -c $(SOURCES) 
 
 clean :
-	$(RM) $(OBJECTS) $(BONUS_OBJECTS)
+	$(RM) -rf $(OBJS_PATH)
 
 fclean : clean
 	$(RM) $(NAME)
@@ -103,6 +103,6 @@ bonus : $(BONUS_OBJECTS)
 $(BONUS_OBJECTS) : mkdirs 
 	$(CC) $(FLAGS) -c $(@:.o=.c)
 	$(CREATE_LIB) $(NAME) $@
-	mv $@ $(OBJS_PATHS)
+	mv $@ $(OBJS_PATH)
 
 .PHONY : clean fclean re bonus 

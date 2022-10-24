@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   decimal.c                                          :+:      :+:    :+:   */
+/*   _decimal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:32:49 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/23 23:13:03 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/24 00:16:37 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-static int	handle_negative_integer(signed long *value)
+static int	_negative_integer(signed long *value)
 {
-	t_ools prntd;
+	t_ools type;
 
-	prntd.count = 0;
+	type.counter = 0;
 	if (*value < 0)
 	{
 		ft_putchar('-');
 		*value *= -1;
-		prntd.count++;
+		type.counter++;
 	}
-	return (prntd.count);
+	return (type.counter);
 }
 
-int	decimal(signed long value)
+int	_decimal(signed long value)
 {
-	t_ools prntd;
+	t_ools type;
 
-	prntd.count = handle_negative_integer(&value);
-	prntd.str = ft_itoa_base(value, DECIMAL_BASE);
-	prntd.count += string(prntd.str);
-	free(prntd.str);
-	return (prntd.count);
+	type.counter = _negative_integer(&value);
+	type.str = ft_itoa_base(value, DECIMAL_BASE);
+	type.counter += _string(type.str);
+	free(type.str);
+	return (type.counter);
 }

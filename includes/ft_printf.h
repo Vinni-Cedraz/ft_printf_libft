@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 13:21:51 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/23 21:04:03 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/24 00:18:50 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,29 @@
 # define EXCEPTION_STR "(null)"
 # define ZERO_EXCEPTION_STR "(nil)"
 
+// this strut is just a box of tools, t_ools, got it? xD
 typedef struct s_counters
 {
 	int	i;
-	int	chars;
-}		t_count;
+	int chars;
+	int counter;
+	char *str;
+	char *str2;
+	va_list list;
+	const char *cnst;
+	unsigned long long addr;
+}		t_ools;
 
-int		ft_printf(const char *format, ...);
-int		is_format(char c);
-int		filter(char *str, va_list args);
+// printf functions:
+int		printf(const char *format, ...);
 int		print_format(const char *str, va_list args);
 int		parser(int c, va_list args);
-int		string(char *str);
-int		pointer(long value);
-int		decimal(long value);
-int		usdecimal(long value);
-int		hex(unsigned long long value, int is_upper);
-int		percent(long value);
+// converters_and_printers:
+int		_string(char *str);
+int		_pointer(long value);
+int		_decimal(long value);
+int		_usdecimal(long value);
+int		_hex(unsigned long long value, int is_upper);
+int		_percent(long value);
 
 #endif
