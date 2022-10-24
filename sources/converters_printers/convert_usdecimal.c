@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _percent.c                                         :+:      :+:    :+:   */
+/*   convert_usdecimal.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022 23:32:44 by vcedraz-          #+#    #+#             */
-/*   Updated: 2024 00:17:31 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022 23:33:31 by vcedraz-          #+#    #+#             */
+/*   Updated: 2022/10/24 19:02:39 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	_percent(long c)
+int	convert_usdecimal(long value)
 {
 	t_ools type;
 
-	type.counter = 0;
-	ft_putchar(c);
-	return (type.counter + 1);
+	type.str = ft_itoa_base(value, DECIMAL_BASE);
+	type.counter = convert_string(type.str);
+	free(type.str);
+	return (type.counter);
 }

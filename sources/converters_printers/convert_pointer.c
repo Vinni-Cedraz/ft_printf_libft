@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _pointer.c                                         :+:      :+:    :+:   */
+/*   convert_pointer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,11 +12,11 @@
 
 #include "ft_printf.h"
 
-static int	print_preceding_string(char *str)
+static int	print_precedingconvert_string(char *str)
 {
 	t_ools type;
 
-	type.counter = _string(str);
+	type.counter = convert_string(str);
 	return (type.counter);
 }
 
@@ -25,9 +25,9 @@ int	pointer(long value)
 	t_ools type;
 
 	type.addr = (unsigned long)value;
-	type.counter = print_preceding_string(PRECEDING_STR);
+	type.counter = print_precedingconvert_string(PRECEDING_STR);
 	type.str = ft_itoa_base(type.addr, HEX_BASE);
-	type.counter += _string(type.str);
+	type.counter += convert_string(type.str);
 	free(type.str);
 	return (type.counter);
 }

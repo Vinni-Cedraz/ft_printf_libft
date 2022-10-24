@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   convert_string.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022 22:57:31 by vcedraz-          #+#    #+#             */
-/*   Updated: 2023 23:25:02 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022 23:33:25 by vcedraz-          #+#    #+#             */
+/*   Updated: 2024 00:15:56 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *fmt, ...)
+int	convert_string(char *str)
 {
-	t_ools type;
+	int i;
 
-	type.str = ft_strdup(fmt);
-	if (!type.str)
-		return (0);
-	va_start(type.list, fmt);
-	type.counter += print_format(type.str, type.list);
-	va_end(type.list);
-	free((void *)type.str);
-	return (type.counter);
+	i = 0;
+	if (!str)
+		str = EXCEPTION_STR;
+	while (str[i] != '\0')
+		i += ft_putchar(str[i]);
+	return (i);
 }

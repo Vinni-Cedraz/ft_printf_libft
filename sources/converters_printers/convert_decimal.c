@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _decimal.c                                         :+:      :+:    :+:   */
+/*   convert_decimal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -26,13 +26,13 @@ static int	_negative_integer(signed long *value)
 	return (type.counter);
 }
 
-int	_decimal(signed long value)
+int	convert_decimal(signed long value)
 {
 	t_ools type;
 
 	type.counter = _negative_integer(&value);
 	type.str = ft_itoa_base(value, DECIMAL_BASE);
-	type.counter += _string(type.str);
+	type.counter += convert_string(type.str);
 	free(type.str);
 	return (type.counter);
 }

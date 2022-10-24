@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _usdecimal.c                                       :+:      :+:    :+:   */
+/*   printf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022 23:33:31 by vcedraz-          #+#    #+#             */
-/*   Updated: 2024 00:16:05 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022 22:57:31 by vcedraz-          #+#    #+#             */
+/*   Updated: 2022/10/24 18:47:17 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	usdecimal(long value)
+int	ft_printf(const char *fmt, ...)
 {
 	t_ools type;
 
-	type.str = ft_itoa_base(value, DECIMAL_BASE);
-	type.counter = _string(type.str);
-	free(type.str);
-	return (type.counter);
+	type.str = ft_strdup(fmt);
+	if (!type.str)
+		return (0);
+	va_start(type.list, fmt);
+	type.counter += print_format(type.str, type.list);
+	va_end(type.list);
+	return (free((void *)type.str), type.counter);
 }

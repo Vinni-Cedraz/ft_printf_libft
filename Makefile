@@ -6,7 +6,7 @@
 #    By: tkomeno <tkomeno@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/30 02:45:29 by tkomeno           #+#    #+#              #
-#    Updated: 2022/10/24 19:08:42 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/10/24 19:12:20 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,16 +52,15 @@ AR = ar -rs
 
 all: $(NAME)
 
-mkdirs:
+
+$(NAME): 
 	mkdir -vp $(OBJS_2_PATH)
 	mkdir -vp $(OBJS_1_PATH)
-
-$(NAME): mkdirs
 	$(MAKE) -C $(LIBFT_PATH)
 	$(FLAGS) $(INCLUDES) -c $(SRCS_2)
 	$(FLAGS) $(INCLUDES) -c $(SRCS_1)
-	mv ./_*.o $(OBJS_2_PATH)
-	mv ./p*.o $(OBJS_1_PATH)
+	mv ./convert_*.o $(OBJS_2_PATH)
+	mv ./*.o $(OBJS_1_PATH)
 	mv $(ARCHIVE) $(NAME)
 	$(AR) $(NAME) $(OBJS_2) $(OBJS_1)
 
