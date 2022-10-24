@@ -6,44 +6,43 @@
 #    By: tkomeno <tkomeno@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/30 02:45:29 by tkomeno           #+#    #+#              #
-#    Updated: 2022/10/23 22:16:07 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/10/24 00:40:10 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-LIBFT_PATH = ./libraries
-OBJECTS_PATH = ./objects
-OBJS_1_PATH = ./objects/ft_printf/converters_printers
-OBJS_2_PATH = ./objects/ft_printf
-OBJS_3_PATH = ./objects/libft
+LIBFT_PATH = ./libraries/
+OBJS_0_PATH = ./objects
+OBJS_1_PATH = ./objects/printf
+OBJS_2_PATH = ./objects/converters_printers
 
-SOURCES_PATH = ./sources
+SOURCES_PATH = ./sources/printf
 CONVERTERS_PATH = ./sources/converters_printers
 
 
-SOURCE_FILES = ft_printf.c \
-				is_format.c \
+SOURCE_FILES = printf.c \
 				print_format.c \
 				parser.c \
 
 
-CONVERTERS_FILES = decimal.c \
-				hex.c \
-				percent.c \
-				pointer.c \
-				string.c \
-				usdecimal.c \
+CONVERTERS_FILES = _decimal.c \
+				_hex.c \
+				_percent.c \
+				_pointer.c \
+				_string.c \
+				_usdecimal.c \
 
-SRCS_1 = $(addprefix $(CONVERTERS_PATH)/,$(CONVERTERS_FILES))
 
-SRCS_2 = $(addprefix $(SOURCES_PATH)/,$(SOURCE_FILES))
+SRCS_1 = $(addprefix $(SOURCES_PATH)/,$(SOURCE_FILES))
+
+SRCS_2 = $(addprefix $(CONVERTERS_PATH)/,$(CONVERTERS_FILES))
 
 OBJS_1 = $(SRCS_1:.c=.o)
 
 OBJS_2 = $(SRCS_2:.c=.o)
 
-OBJS = $(OBJS_1) $(OBJS_2)
+OBJS_3 = $(LIBFT_PATH)libft.a
 
 INCLUDES = -I./includes -I./libraries/libft
 
@@ -54,20 +53,20 @@ AR = ar -cr
 all: $(NAME)
 
 mkdirs:
-	mkdir -p $(OBJECTS_PATH)
-	mkdir -p $(OBJS_1_PATH)
-	mkdir -p $(OBJS_2_PATH)
-	mkdir -p $(OBJS_3_PATH)
+	mkdir -vp $(OBJS_2_PATH)
+	mkdir -vp $(OBJS_1_PATH)
 
-$(NAME): mkdirs $(OBJS)
-	$(MAKE) -C $(LIBFT_PATH) 
-	$(AR) $(NAME) $(OBJS_1) $(OBJS_2)
-	mv $(LIBFT_PATH)/*.o $(OBJS_3_PATH)
-	mv $(OBJS_2) $(OBJS_2_PATH)
-	mv $(OBJS_1) $(OBJS_1_PATH) 
+$(NAME): mkdirs
+	$(MAKE) -C $(LIBFT_PATH)
+	$(FLAGS) $(INCLUDES) -c $(SRCS_2)
+	$(FLAGS) $(INCLUDES) -c $(SRCS_1)
+	$(AR) $(NAME) $(OBJS_3) $(OBJS_2) $(OBJS_1)
+	mv ./_*.o $(OBJS_2_PATH)
+	mv ./p*.o $(OBJS_1_PATH)
+
 
 clean:
-	rm -rf $(OBJECTS_PATH)
+	rm -rf $(OBJS_0_PATH)
 
 fclean: clean
 	$(RM) $(NAME)
