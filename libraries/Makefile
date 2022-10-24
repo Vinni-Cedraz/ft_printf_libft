@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 16:47:53 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/10/22 23:41:25 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/10/23 22:26:47 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ FLAGS = -Wall -Werror -Wextra
 CREATE_LIB = ar -rsc
 
 RM = rm -f
+
+OBJS_PATHS = ./objs/
 
 SOURCES = ft_isalpha.c \
   ft_isdigit.c \
@@ -78,8 +80,12 @@ BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
 all : $(NAME) 
 
-$(NAME) : $(OBJECTS)
+mkdirs:
+	mkdir -p $(OBJS_PATHS)
+
+$(NAME) : mkdirs $(OBJECTS)
 	$(CREATE_LIB) $(NAME) $(OBJECTS)
+	mv $(OBJECTS) $(OBJS_PATHS)
 
 $(OBJECTS) :
 	$(CC) $(FLAGS) -c $(SOURCES) 
@@ -94,8 +100,9 @@ re : fclean all
 
 bonus : $(BONUS_OBJECTS) 
 
-$(BONUS_OBJECTS) : 
+$(BONUS_OBJECTS) : mkdirs 
 	$(CC) $(FLAGS) -c $(@:.o=.c)
 	$(CREATE_LIB) $(NAME) $@
+	mv $@ $(OBJS_PATHS)
 
 .PHONY : clean fclean re bonus 
