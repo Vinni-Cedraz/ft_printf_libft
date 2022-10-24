@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:32:49 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/22 23:34:28 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/23 23:13:03 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,25 @@
 
 static int	handle_negative_integer(signed long *value)
 {
-	int	counter;
+	t_ools prntd;
 
-	counter = 0;
+	prntd.count = 0;
 	if (*value < 0)
 	{
 		ft_putchar('-');
 		*value *= -1;
-		counter++;
+		prntd.count++;
 	}
-	return (counter);
+	return (prntd.count);
 }
 
 int	decimal(signed long value)
 {
-	int		counter;
-	char	*str;
+	t_ools prntd;
 
-	counter = handle_negative_integer(&value);
-	str = ft_itoa_base(value, DECIMAL_BASE);
-	counter += string(str);
-	free(str);
-	return (counter);
+	prntd.count = handle_negative_integer(&value);
+	prntd.str = ft_itoa_base(value, DECIMAL_BASE);
+	prntd.count += string(prntd.str);
+	free(prntd.str);
+	return (prntd.count);
 }
