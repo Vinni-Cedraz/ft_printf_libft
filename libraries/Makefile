@@ -6,13 +6,13 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 16:47:53 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/10/24 11:53:00 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/10/23 22:30:16 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = cc -g
+CC = cc
 
 FLAGS = -Wall -Werror -Wextra
 
@@ -67,28 +67,42 @@ SOURCES = ft_isalpha.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 
+BONUS_SOURCES = ft_lstnew.c \
+       ft_lstadd_front.c \
+       ft_lstsize.c \
+       ft_lstlast.c \
+       ft_lstadd_back.c \
+       ft_lstdelone.c \
+
+BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
 #recipes
 
 all : $(NAME) 
 
-
-$(NAME) :
+mkdirs:
 	mkdir -p $(OBJS_PATH)
-	$(CC) $(FLAGS) -c $(SOURCES) 
-	mv $(OBJECTS) $(OBJS_PATH)
-	$(CREATE_LIB) $(NAME) $(OBJS_PATH)*.o
 
+$(NAME) : mkdirs $(OBJECTS)
+	$(CREATE_LIB) $(NAME) $(OBJECTS)
+	mv $(OBJECTS) $(OBJS_PATH)
+
+$(OBJECTS) :
+	$(CC) $(FLAGS) -c $(SOURCES) 
 
 clean :
 	$(RM) -rf $(OBJS_PATH)
 
-
 fclean : clean
 	$(RM) $(NAME)
 
-
 re : fclean all
 
+bonus : $(BONUS_OBJECTS) 
 
-.PHONY : clean fclean re bonus
+$(BONUS_OBJECTS) : mkdirs 
+	$(CC) $(FLAGS) -c $(@:.o=.c)
+	$(CREATE_LIB) $(NAME) $@
+	mv $@ $(OBJS_PATH)
+
+.PHONY : clean fclean re bonus 

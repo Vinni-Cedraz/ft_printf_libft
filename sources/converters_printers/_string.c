@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_hex.c                                             :+:      :+:    :+:   */
+/*   _string.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022 23:28:18 by vcedraz-          #+#    #+#             */
-/*   Updated: 2024 00:16:48 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022 23:33:25 by vcedraz-          #+#    #+#             */
+/*   Updated: 2024 00:15:56 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	convert_hex(unsigned long long value, int is_upper)
+int	_string(char *str)
 {
-	t_ools type;
+	int i;
 
-	if (is_upper)
-	{
-		type.str = ft_itoa_base(value, HEX_BASE_UPPER);
-		type.counter = convert_string(type.str);
-		free(type.str);
-		return (type.counter);
-	}
-	type.str = ft_itoa_base(value, HEX_BASE);
-	type.counter = convert_string(type.str);
-	free(type.str);
-	return (type.counter);
+	i = 0;
+	if (!str)
+		str = EXCEPTION_STR;
+	while (str[i] != '\0')
+		i += ft_putchar(str[i]);
+	return (i);
 }
