@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 13:21:51 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/24 00:18:50 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:34:23 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ int		printf(const char *format, ...);
 int		print_format(const char *str, va_list args);
 int		parser(int c, va_list args);
 // converters_and_printers:
-int		_string(char *str);
-int		_pointer(long value);
-int		_decimal(long value);
-int		_usdecimal(long value);
-int		_hex(unsigned long long value, int is_upper);
-int		_percent(long value);
+int		convert_string(char *str);
+int		convert_pointer(long value);
+int		convert_decimal(long value);
+int		convert_usdecimal(long value);
+int		convert_hex(unsigned long long value, int is_upper);
+int		convert_percent(long value);
 
 #endif

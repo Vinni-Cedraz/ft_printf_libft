@@ -1,22 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _percent.c                                         :+:      :+:    :+:   */
+/*   convert_decimal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022 23:32:44 by vcedraz-          #+#    #+#             */
-/*   Updated: 2024 00:17:31 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022 23:32:49 by vcedraz-          #+#    #+#             */
+/*   Updated: 2024 00:16:37 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	_percent(long c)
+static int	_negative_integer(signed long *value)
 {
 	t_ools type;
 
 	type.counter = 0;
-	ft_putchar(c);
-	return (type.counter + 1);
+	if (*value < 0)
+	{
+		ft_putchar('-');
+		*value *= -1;
+		type.counter++;
+	}
+	return (type.counter);
+}
+
+int	convert_decimal(signed long value)
+{
+	t_ools type;
+
+	type.counter = _negative_integer(&value);
+	type.str = ft_itoa_base(value, DECIMAL_BASE);
+	type.counter += convert_string(type.str);
+	free(type.str);
+	return (type.counter);
 }

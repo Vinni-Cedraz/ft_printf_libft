@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _decimal.c                                         :+:      :+:    :+:   */
+/*   convert_string.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022 23:32:49 by vcedraz-          #+#    #+#             */
-/*   Updated: 2024 00:16:37 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022 23:33:25 by vcedraz-          #+#    #+#             */
+/*   Updated: 2024 00:15:56 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	_negative_integer(signed long *value)
+int	convert_string(char *str)
 {
-	t_ools type;
+	int i;
 
-	type.counter = 0;
-	if (*value < 0)
-	{
-		ft_putchar('-');
-		*value *= -1;
-		type.counter++;
-	}
-	return (type.counter);
-}
-
-int	_decimal(signed long value)
-{
-	t_ools type;
-
-	type.counter = _negative_integer(&value);
-	type.str = ft_itoa_base(value, DECIMAL_BASE);
-	type.counter += _string(type.str);
-	free(type.str);
-	return (type.counter);
+	i = 0;
+	if (!str)
+		str = EXCEPTION_STR;
+	while (str[i] != '\0')
+		i += ft_putchar(str[i]);
+	return (i);
 }
