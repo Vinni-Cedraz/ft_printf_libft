@@ -6,7 +6,7 @@
 #    By: tkomeno <tkomeno@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/30 02:45:29 by tkomeno           #+#    #+#              #
-#    Updated: 2022/10/24 00:46:39 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/10/24 19:08:42 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,24 +14,24 @@ NAME = libftprintf.a
 
 LIBFT_PATH = ./libraries/
 OBJS_0_PATH = ./objects
-OBJS_1_PATH = ./objects/printf
+OBJS_1_PATH = ./objects/ft_printf
 OBJS_2_PATH = ./objects/converters_printers
 
-SOURCES_PATH = ./sources/printf
+SOURCES_PATH = ./sources/ft_printf
 CONVERTERS_PATH = ./sources/converters_printers
 
 
-SOURCE_FILES = printf.c \
+SOURCE_FILES = ft_printf.c \
 				print_format.c \
 				parser.c \
 
 
-CONVERTERS_FILES = _decimal.c \
-				_hex.c \
-				_percent.c \
-				_pointer.c \
-				_string.c \
-				_usdecimal.c \
+CONVERTERS_FILES = convert_decimal.c \
+				convert_hex.c \
+				convert_percent.c \
+				convert_pointer.c \
+				convert_string.c \
+				convert_usdecimal.c \
 
 
 SRCS_1 = $(addprefix $(SOURCES_PATH)/,$(SOURCE_FILES))
@@ -42,13 +42,13 @@ OBJS_1 = $(addprefix $(OBJS_1_PATH)/,$(SOURCE_FILES:.c=.o))
 
 OBJS_2 = $(addprefix $(OBJS_2_PATH)/,$(CONVERTERS_FILES:.c=.o))
 
-OBJS_3 = $(LIBFT_PATH)libft.a
+ARCHIVE = $(LIBFT_PATH)libft.a
 
 INCLUDES = -I./includes -I./libraries/libft
 
 FLAGS = cc -g -Wall -Wextra -Werror
 
-AR = ar -cr
+AR = ar -rs
 
 all: $(NAME)
 
@@ -62,7 +62,8 @@ $(NAME): mkdirs
 	$(FLAGS) $(INCLUDES) -c $(SRCS_1)
 	mv ./_*.o $(OBJS_2_PATH)
 	mv ./p*.o $(OBJS_1_PATH)
-	$(AR) $(NAME) $(OBJS_3) $(OBJS_2) $(OBJS_1)
+	mv $(ARCHIVE) $(NAME)
+	$(AR) $(NAME) $(OBJS_2) $(OBJS_1)
 
 
 clean:
