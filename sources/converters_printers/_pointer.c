@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 23:33:15 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/24 00:19:43 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022 23:33:15 by vcedraz-          #+#    #+#             */
+/*   Updated: 2024 00:19:43 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
 static int	print_preceding_string(char *str)
 {

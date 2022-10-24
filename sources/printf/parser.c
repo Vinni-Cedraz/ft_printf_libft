@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 23:22:07 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/24 00:14:40 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022 23:22:07 by vcedraz-          #+#    #+#             */
+/*   Updated: 2024 00:14:40 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	parser(int c, va_list args)
 {

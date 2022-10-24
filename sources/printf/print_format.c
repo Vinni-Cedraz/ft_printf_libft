@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 23:19:30 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/24 00:23:53 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022 23:19:30 by vcedraz-          #+#    #+#             */
+/*   Updated: 2024 00:23:53 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
 // this static aux just checks whether the chars after a % is a format keyword
 static int	is_format(char c);

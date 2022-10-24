@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 22:57:31 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/23 23:25:02 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022 22:57:31 by vcedraz-          #+#    #+#             */
+/*   Updated: 2023 23:25:02 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *fmt, ...)
 {
