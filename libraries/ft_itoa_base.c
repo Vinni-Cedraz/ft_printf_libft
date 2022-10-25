@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:40:20 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/23 01:09:15 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:45:07 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static size_t	ft_intlen_base(unsigned long long n, char *base)
 	return (len);
 }
 
-char	*itoa_base(unsigned long long n, char *base)
+char	*ft_itoa_base(unsigned long long n, char *base)
 {
 	char	*str;
 	unsigned long long numlen;
