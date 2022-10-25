@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tkomeno <tkomeno@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/30 02:45:29 by tkomeno           #+#    #+#              #
-#    Updated: 2022/10/24 19:12:20 by vcedraz-         ###   ########.fr        #
+#    Created: 2022/10/25 12:57:13 by vcedraz-          #+#    #+#              #
+#    Updated: 2022/10/25 12:57:16 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = libftprintf.a
 
