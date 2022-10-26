@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 12:57:13 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/10/25 12:57:16 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/10/26 15:00:06 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,60 +14,53 @@
 NAME = libftprintf.a
 
 LIBFT_PATH = ./libraries/
-OBJS_0_PATH = ./objects
-OBJS_1_PATH = ./objects/ft_printf
-OBJS_2_PATH = ./objects/converters_printers
-
-SOURCES_PATH = ./sources/ft_printf
-CONVERTERS_PATH = ./sources/converters_printers
+ARCHIVE = $(LIBFT_PATH)libft.a
+INCLUDES = -I./includes -I./libraries/libft
+FLAGS = -Wall -Wextra -Werror -O3 $(INCLUDES)
+AR = ar -rs
 
 
-SOURCE_FILES = ft_printf.c \
+SRCS_1 = ft_printf.c \
 				print_format.c \
 				parser.c \
 
 
-CONVERTERS_FILES = convert_decimal.c \
+SRCS_2 = convert_decimal.c \
 				convert_hex.c \
 				convert_percent.c \
 				convert_pointer.c \
 				convert_string.c \
 				convert_usdecimal.c \
 
+OBJS_1_PATH = ./objects/ft_printf/
+OBJS_2_PATH = ./objects/converters_printers/
 
-SRCS_1 = $(addprefix $(SOURCES_PATH)/,$(SOURCE_FILES))
+SRCS_1_PATH = ./sources/ft_printf/
+SRCS_2_PATH = ./sources/converters_printers/
 
-SRCS_2 = $(addprefix $(CONVERTERS_PATH)/,$(CONVERTERS_FILES))
+OBJS_1 = $(SRCS_1:%.c=$(OBJS_1_PATH)%.o)
+OBJS_2 = $(SRCS_2:%.c=$(OBJS_2_PATH)%.o)
 
-OBJS_1 = $(addprefix $(OBJS_1_PATH)/,$(SOURCE_FILES:.c=.o))
-
-OBJS_2 = $(addprefix $(OBJS_2_PATH)/,$(CONVERTERS_FILES:.c=.o))
-
-ARCHIVE = $(LIBFT_PATH)libft.a
-
-INCLUDES = -I./includes -I./libraries/libft
-
-FLAGS = cc -g -Wall -Wextra -Werror
-
-AR = ar -rs
 
 all: $(NAME)
 
 
-$(NAME): 
-	mkdir -vp $(OBJS_2_PATH)
-	mkdir -vp $(OBJS_1_PATH)
+$(NAME): $(OBJS_1) $(OBJS_2)
 	$(MAKE) -C $(LIBFT_PATH)
-	$(FLAGS) $(INCLUDES) -c $(SRCS_2)
-	$(FLAGS) $(INCLUDES) -c $(SRCS_1)
-	mv ./convert_*.o $(OBJS_2_PATH)
-	mv ./*.o $(OBJS_1_PATH)
 	mv $(ARCHIVE) $(NAME)
-	$(AR) $(NAME) $(OBJS_2) $(OBJS_1)
+	$(AR) $(NAME) $(OBJS_1_PATH)*.o $(OBJS_2_PATH)*.o
 
+
+$(OBJS_1_PATH)%.o: $(SRCS_1_PATH)%.c
+	@mkdir -p $(OBJS_1_PATH)
+	cc $(FLAGS) -c $< -o $@
+
+$(OBJS_2_PATH)%.o: $(SRCS_2_PATH)%.c
+	@mkdir -p $(OBJS_2_PATH)
+	cc $(FLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJS_0_PATH)
+	rm -rf ./objects/
 
 fclean: clean
 	$(RM) $(NAME)
