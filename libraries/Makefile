@@ -6,23 +6,22 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 16:47:53 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/10/23 22:30:16 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/10/26 13:53:49 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = cc
 
-FLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
-CREATE_LIB = ar -rsc
+AR = ar -rsc
 
 RM = rm -f
 
 OBJS_PATH = ./objs/
 
-SOURCES = ft_isalpha.c \
+SRCS = ft_isalpha.c \
   ft_isdigit.c \
   ft_isalnum.c \
   ft_isascii.c \
@@ -65,44 +64,30 @@ SOURCES = ft_isalpha.c \
 	ft_itoa_base.c \
 	
 
-OBJECTS = $(SOURCES:.c=.o)
+OBJECTS = $(SRCS:%.c=$(OBJS_PATH)%.o)
 
-BONUS_SOURCES = ft_lstnew.c \
-       ft_lstadd_front.c \
-       ft_lstsize.c \
-       ft_lstlast.c \
-       ft_lstadd_back.c \
-       ft_lstdelone.c \
-
-BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
-
-#recipes
 
 all : $(NAME) 
 
-mkdirs:
-	mkdir -p $(OBJS_PATH)
 
-$(NAME) : mkdirs $(OBJECTS)
-	$(CREATE_LIB) $(NAME) $(OBJECTS)
-	mv $(OBJECTS) $(OBJS_PATH)
+$(OBJS_PATH)%.o : %.c
+	@mkdir -p $(OBJS_PATH)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJECTS) :
-	$(CC) $(FLAGS) -c $(SOURCES) 
+
+$(NAME) : $(OBJECTS)
+	$(AR) $(NAME) $(OBJECTS) 
+
 
 clean :
 	$(RM) -rf $(OBJS_PATH)
 
+
 fclean : clean
 	$(RM) $(NAME)
 
+
 re : fclean all
 
-bonus : $(BONUS_OBJECTS) 
-
-$(BONUS_OBJECTS) : mkdirs 
-	$(CC) $(FLAGS) -c $(@:.o=.c)
-	$(CREATE_LIB) $(NAME) $@
-	mv $@ $(OBJS_PATH)
 
 .PHONY : clean fclean re bonus 
