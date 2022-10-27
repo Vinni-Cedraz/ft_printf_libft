@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022 23:19:30 by vcedraz-          #+#    #+#             */
-/*   Updated: 2024 00:23:53 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/27 12:56:58 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	is_format(char c);
 int	print_format(const char *str, va_list args)
 {
 	int		i;
-	t_ools hw_mny;
+	t_ools	hw_mny;
 
 	i = 0;
 	while (str[i])
@@ -40,13 +40,6 @@ int	print_format(const char *str, va_list args)
 
 static int	is_format(char c)
 {
-	return (c == 'c'
-		|| c == 's'
-		|| c == 'p'
-		|| c == 'd'
-		|| c == 'i'
-		|| c == 'u'
-		|| c == 'x'
-		|| c == 'X'
-		|| c == '%');
+	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u'
+		|| c == 'x' || c == 'X' || c == '%');
 }

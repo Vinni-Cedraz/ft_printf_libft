@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_hex.c                                             :+:      :+:    :+:   */
+/*   convert_hex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022 23:28:18 by vcedraz-          #+#    #+#             */
-/*   Updated: 2024 00:16:48 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/27 12:55:27 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	convert_hex(unsigned long long value, int is_upper)
 {
-	t_ools type;
+	t_ools	type;
 
 	if (is_upper)
 	{

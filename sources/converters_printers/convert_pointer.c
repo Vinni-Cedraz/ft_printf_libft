@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022 23:33:15 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/25 11:44:14 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/27 12:56:07 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	print_preceding_string(char *str)
 {
-	t_ools type;
+	t_ools	type;
 
 	type.counter = convert_string(str);
 	return (type.counter);
@@ -22,7 +22,7 @@ static int	print_preceding_string(char *str)
 
 int	convert_pointer(long value)
 {
-	t_ools type;
+	t_ools	type;
 
 	type.addr = (unsigned long)value;
 	type.counter = print_preceding_string(PRECEDING_STR);
