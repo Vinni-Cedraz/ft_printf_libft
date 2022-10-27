@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022 23:22:07 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/24 18:48:10 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:00:51 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	parser(int c, va_list args)
 {
 	t_ools	chars;
 
+	chars.counter = 0;
 	if (c == 'c')
 		chars.counter = ft_putchar(va_arg(args, int));
 	if (c == 's')

@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022 23:19:30 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/27 12:56:58 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:00:04 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	print_format(const char *str, va_list args)
 	t_ools	hw_mny;
 
 	i = 0;
+	hw_mny.chars = 0;
 	while (str[i])
 	{
 		if (str[i] != '%')

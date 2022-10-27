@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 16:47:53 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/10/26 13:53:49 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/10/27 13:17:31 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ $(OBJS_PATH)%.o : %.c
 
 
 $(NAME) : $(OBJECTS)
-	$(AR) $(NAME) $(OBJECTS) 
+	@$(AR) $(NAME) $(OBJECTS) 
 
 
 clean :
