@@ -6,12 +6,17 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:50:01 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/28 14:34:39 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:18:59 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 #include <stdio.h>
+
+long	ft_putstr_fd(char *s, int fd)
+{
+	return (write(fd, s, ft_strlen(s)));
+}
 
 int	main(void)
 {
@@ -35,5 +40,6 @@ int	main(void)
 	else
 		printf("OK\n");
 	printf("ft_printf: %d\n", ft_printf("%Jas\n"));
-	printf("ft_putstr_fd: %ld\n", ft_putstr_fd("%Jas\n", 1));
+	printf("putstr_fd: %ld\n", ft_putstr_fd("%Jas\n", 1));
 }
+
