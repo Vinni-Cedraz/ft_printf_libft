@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_decimal.c                                      :+:      :+:    :+:   */
+/*   is_format.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022 23:32:49 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/28 13:18:17 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022/10/28 13:41:55 by vcedraz-          #+#    #+#             */
+/*   Updated: 2022/10/28 13:42:08 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	put_decimal(signed long value)
+int	is_format(char c)
 {
-	t_ools	type;
-	type.counter = 0;
-	if (value < 0)
-	{
-		ft_putchar('-');
-		value *= -1;
-		type.counter++;
-	}
-	type.str = ft_itoa_base(value, DECIMAL_BASE);
-	type.counter += put_string(type.str);
-	return (free(type.str), type.counter);
+	return (c == 'c'
+		|| c == 's'
+		|| c == 'p'
+		|| c == 'd'
+		|| c == 'i'
+		|| c == 'u'
+		|| c == 'x'
+		|| c == 'X'
+		|| c == '%');
 }

@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022 22:57:31 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/27 22:34:18 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:53:31 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_printf(const char *fmt, ...)
 	t_ools	type;
 
 	if (!fmt)
-		return (0);
+		return (-1);
 	type.counter = 0;
 	va_start(type.list, fmt);
 	type.counter += print_until(fmt, type.list);
