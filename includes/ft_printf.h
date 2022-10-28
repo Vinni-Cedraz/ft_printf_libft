@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 13:21:51 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/27 22:15:18 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:44:30 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,43 +30,52 @@ typedef struct s_counters
 	int					i;
 	int					chars;
 	int					counter;
-	char				*str;
-	char				*str2;
-	va_list				list;
 	int					prntd;
 	int					chckd;
+	char				*str;
+	va_list				list;
 	const char			*cnst;
-	unsigned long long	addr;
 }						t_ools;
 
 // PRINTF PROTAGONISTS:
 
+// The ft_printf function initializes a list of the type va_list, and then
+// calls the print_until function, which will be responsible for managing the
+// whole parsing process keeping track of how many chars were printed and
+// returning that number to the ft_printf function. Which will then end the
+// list and return the number of chars printed.
 int						ft_printf(const char *format, ...);
 
-/* print_until prints the chars until a % is found then it sends the char right
-after it to the is_format function, which will check if it's the indicator of 
-a special format in which case, it will send it to the parser function, where 
-the auxiliary functions will be called to print the desired format */
+/* The print_until function prints the chars until a % is found. Then it sends
+the char right after it to the is_format function, which will check if it's the
+indicator of a special format. In which case, it will send it to the parser
+function, where the auxiliary functions will be called to print the desired
+format, this function manages the whole dynamic of the project */
 int						print_until(const char *str, va_list args);
+
+/* The is_format function checks if the char after the % is a valid format */
+int 					is_format(char c);
 
 /* the parser function identify which of the format indicators were sent to it
 from the options: "c, s, p, i, u, x, X, %" 
-c = char -> is sent to libft's ft_putchar
+ c = char -> is sent to libft's ft_putchar
 
-s = string -> is sent to aux put_string
+ s = string -> is sent to aux put_string
 
-p = pointer address -> is sent to aux PUT_POINTER where ft_itoa_base is called 
+ p = pointer address -> is sent to aux PUT_POINTER where ft_itoa_base is called 
 		convert the address to a string of hex and PUT_STRING is called to print it
 
-i = integer -> is sent to aux PUT_DECIMAL where ft_itoa_base is called to con-
+ i = integer -> is sent to aux PUT_DECIMAL where ft_itoa_base is called to con-
 vert the integer to a string and PUT_STRING is called to print it
 
-u = unsigned integer -> sent to put_usdecimal where same as above will happen 
+ u = unsigned integer -> sent to put_usdecimal where same as above will happen 
 execpt that no negative numbers will be returned
 
-x = hexadecimal -> sent to PUT_HEX where FT_ITOA_BASE is called to convert 
-X = hexadecimal uppercase -> same but int IS_UPPER is set to true 
-% = prints a single percent sign -> easily done with FT_PUTCHAR */
+ x = hexadecimal -> sent to PUT_HEX where FT_ITOA_BASE is called to convert 
+
+ X = hexadecimal uppercase -> same but int IS_UPPER is set to true
+
+ % = prints a single percent sign -> easily done with FT_PUTCHAR */
 int						parser(int c, va_list args);
 
 // auxiliary functions (writers):
