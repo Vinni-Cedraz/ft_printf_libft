@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:50:01 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/27 17:18:02 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:34:39 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,10 @@ int	main(void)
 		printf("Error\n");
 	else
 		printf("OK\n");
+	if (ft_printf("%Jas\n") == ft_putstr_fd("%Jas\n", 1))
+		printf("Error\n");
+	else
+		printf("OK\n");
+	printf("ft_printf: %d\n", ft_printf("%Jas\n"));
+	printf("ft_putstr_fd: %ld\n", ft_putstr_fd("%Jas\n", 1));
 }
