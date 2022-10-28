@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   put_hex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 16:50:01 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/27 17:18:02 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022 23:28:18 by vcedraz-          #+#    #+#             */
+/*   Updated: 2022/10/27 17:41:03 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	main(void)
+int	put_hex(unsigned long long value, int is_upper)
 {
-	void	*ptr;
+	t_ools	type;
 
-	ptr = NULL;
-	if (ft_printf("%s\n", "Hello World") != printf("%s\n", "Hello World"))
-		printf("Error\n");
-	else
-		printf("OK\n");
-	if (ft_printf("%p\n", &main) != printf("%p\n", &main))
-		printf("Error\n");
-	else
-		printf("OK\n");
-	if (ft_printf("%p\n", ptr) != printf("%p\n", ptr))
-		printf("Error\n");
-	else
-		printf("OK\n");
+	if (is_upper)
+	{
+		type.str = ft_itoa_base(value, HEX_BASE_UPPER);
+		type.counter = put_string(type.str);
+		return (free(type.str), type.counter);
+	}
+	type.str = ft_itoa_base(value, HEX_BASE);
+	type.counter = put_string(type.str);
+	return (free(type.str), type.counter);
 }

@@ -6,34 +6,34 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 12:57:13 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/10/27 13:19:07 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/10/27 22:37:50 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = libftprintf.a
 
-LIBFT_PATH = ./libraries/
+
+LIBFT_PATH = ./libs/
 ARCHIVE = $(LIBFT_PATH)libft.a
-INCLUDES = -I./includes -I./libraries/libft
-FLAGS = -Wall -Wextra -Werror -O3 $(INCLUDES)
+INCLUDES = -I./includes -I./libs/libft
+FLAGS = -Wall -Wextra -Werror $(INCLUDES)
 
 
 SRCS_1 = ft_printf.c \
-				print_format.c \
+				print_until.c \
 				parser.c \
 
 
-SRCS_2 = convert_decimal.c \
-				convert_hex.c \
-				convert_percent.c \
-				convert_pointer.c \
-				convert_string.c \
-				convert_usdecimal.c \
+SRCS_2 = put_decimal.c \
+				put_hex.c \
+				put_pointer.c \
+				put_string.c \
+				put_usdecimal.c \
 
 
-OBJS_1_PATH = ./objects/ft_printf/
-OBJS_2_PATH = ./objects/converters_printers/
+OBJS_1_PATH = ./objs/pivot/
+OBJS_2_PATH = ./objs/aux/
 
 
 OBJS_1 = $(SRCS_1:%.c=$(OBJS_1_PATH)%.o)
@@ -50,25 +50,26 @@ $(NAME): $(OBJS_1) $(OBJS_2)
 	@echo "libftprintf.a silently created out of the .o files"
 
 
-SRCS_1_PATH = ./sources/ft_printf/
+SRCS_1_PATH = ./srcs/pivot/
 $(OBJS_1_PATH)%.o: $(SRCS_1_PATH)%.c
 	@mkdir -p $(OBJS_1_PATH)
 	cc $(FLAGS) -c $< -o $@
 
 
-SRCS_2_PATH = ./sources/converters_printers/
+SRCS_2_PATH = ./srcs/aux/
 $(OBJS_2_PATH)%.o: $(SRCS_2_PATH)%.c
 	@mkdir -p $(OBJS_2_PATH)
 	cc $(FLAGS) -c $< -o $@
 
 
 clean:
-	rm -rf ./objects/
+	rm -rf ./objs/
 
 
 fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) fclean -C $(LIBFT_PATH)
+	@rm -f compile_commands.json
 
 
 re: fclean all

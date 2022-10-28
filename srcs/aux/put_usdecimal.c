@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   put_usdecimal.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 16:50:01 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/27 17:18:02 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022 23:33:31 by vcedraz-          #+#    #+#             */
+/*   Updated: 2022/10/27 17:57:52 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	main(void)
+int	put_usdecimal(long value)
 {
-	void	*ptr;
+	t_ools	type;
 
-	ptr = NULL;
-	if (ft_printf("%s\n", "Hello World") != printf("%s\n", "Hello World"))
-		printf("Error\n");
-	else
-		printf("OK\n");
-	if (ft_printf("%p\n", &main) != printf("%p\n", &main))
-		printf("Error\n");
-	else
-		printf("OK\n");
-	if (ft_printf("%p\n", ptr) != printf("%p\n", ptr))
-		printf("Error\n");
-	else
-		printf("OK\n");
+	type.str = ft_itoa_base(value, DECIMAL_BASE);
+	type.counter = put_string(type.str);
+	return (free(type.str), type.counter);
 }
