@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:40:20 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/27 22:44:32 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/28 21:26:24 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static size_t	ft_intlen_base(unsigned long long n, char *base)
 
 char	*ft_itoa_base(unsigned long long n, char *base)
 {
-	char	*str;
-	unsigned long long numlen;
-	unsigned long long baselen;
+	char				*str;
+	unsigned long long	numlen;
+	unsigned long long	baselen;
 
 	numlen = ft_intlen_base(n, base);
 	baselen = ft_strlen(base);

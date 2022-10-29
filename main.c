@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:50:01 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/28 16:18:59 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/28 21:26:40 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,3 @@ int	main(void)
 	printf("ft_printf: %d\n", ft_printf("%Jas\n"));
 	printf("putstr_fd: %ld\n", ft_putstr_fd("%Jas\n", 1));
 }
-
