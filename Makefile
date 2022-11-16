@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 12:57:13 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/10/28 16:25:49 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/11/16 15:49:19 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,7 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 	@rm -f compile_commands.json
+	@rm -f a.out
 
 
 re: fclean all
