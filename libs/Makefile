@@ -6,9 +6,11 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 11:11:55 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/11/25 00:18:43 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/11/28 20:46:57 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+## VARIABLES ##
 
 NAME = libft.a
 
@@ -27,6 +29,16 @@ OBJS_PATH = ./objs/
 OBJSB_PATH = ./objs_bonus/
 
 PRNTF_OBJS_PATH = ./objs_printf/
+
+DEF_COLOR = \033[0;39m
+GRAY = \033[0;37m
+RED = \033[0;91m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
+BLUE = \033[0;94m
+MAGENTA = \033[0;95m
+CYAN = \033[0;96m
+WHITE = \033[0;97m
 
 SRCS = ft_isalpha.c \
 ft_isdigit.c \
@@ -83,22 +95,24 @@ ft_lstlast.c \
 ft_lstnew.c \
 ft_lstsize.c \
 	
-PRNTF_SRCS = ft_putchar.c \
-ft_itoa_base.c \
-ft_calloc.c \
-ft_strlen.c \
-ft_memset.c \
+PRNTF_SRCS = ft_putchar \
+ft_itoa_base \
+ft_calloc \
+ft_strlen \
+ft_memset \
 
 OBJS = $(patsubst %.c, $(OBJS_PATH)%.o, $(SRCS))
 OBJSB = $(patsubst %.c, $(OBJSB_PATH)%.o, $(BSRCS))
-OBJS_PRNTF = $(patsubst %.c, $(PRNTF_OBJS_PATH)%.o, $(PRNTF_SRCS))
-
+OBJS_PRNTF = $(patsubst %, $(PRNTF_OBJS_PATH)%.o, $(PRNTF_SRCS))
 
 all : $(NAME) 
 
 bonus : $(NAME_BONUS)
 
-printf : $(NAME_PRNTF)
+srcs_to_printf : $(NAME_PRNTF)
+
+$(NAME_PRNTF) : $(OBJS_PRNTF)
+	@ar -rsc $(NAME_PRNTF) $(OBJS_PRNTF)
 
 $(NAME) : $(OBJS)
 	$(AR) $(NAME) $(OBJS) 
@@ -112,31 +126,44 @@ $(OBJSB_PATH)%.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(PRNTF_OBJS_PATH)%.o : %.c
+	@make PRNTF_LOOP
+
+PRNTF_LOOP :
 	@mkdir -p $(PRNTF_OBJS_PATH)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@for file in $(PRNTF_SRCS); do \
+		if [ $$file.c -nt $(PRNTF_OBJS_PATH)$$file.o ]; then \
+		printf "$(CYAN)Compiling $(WHITE)$$file$(DEF_COLOR)\n"; \
+		$(CC) $(CFLAGS) -c $$file.c -o $(PRNTF_OBJS_PATH)$$file.o; \
+		printf "$(CC) $(CFLAGS) -c $$file.c -o $(PRNTF_OBJS_PATH)$$file.o\n"; \
+		printf "$(WHITE)$$file$(GREEN) OK\n\n$(DEF_COLOR)"; \
+		fi; \
+	done
+	@printf "$(GREEN)Objects Compiled Into $(WHITE)$(PRNTF_OBJS_PATH)$(DEF_COLOR)\n" \
 
 $(NAME_BONUS) : $(NAME) $(OBJSB)
 	cp $(NAME) $(NAME_BONUS)
 	$(AR) $(NAME_BONUS) $(OBJSB)
 
-$(NAME_PRNTF) : $(OBJS_PRNTF)
-	$(AR) $(NAME_PRNTF) $(OBJS_PRNTF)
-
 clean :
-	rm -rf $(OBJS_PATH)
-	rm -rf $(OBJSB_PATH)
-	rm -rf $(PRNTF_OBJS_PATH)
+	@rm -rf $(OBJS_PATH)
+	@rm -rf $(OBJSB_PATH)
+	@rm -rf $(PRNTF_OBJS_PATH)
 	@rm -f a.out
 	@rm -f compile_commands.json
+
 
 clean_printf:
-	rm -rf $(PRNTF_OBJS_PATH)
+	@rm -rf $(PRNTF_OBJS_PATH)
 	@rm -f a.out
 	@rm -f compile_commands.json
+	@printf "$(RED)Printf Objects From Libft Removed$(DEF_COLOR)\n"
+
 
 fclean : clean
 	$(RM) *.a
 
+
 re : fclean all
+
 
 phony : all clean fclean re bonus printf

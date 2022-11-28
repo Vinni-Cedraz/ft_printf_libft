@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 12:57:13 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/11/27 17:15:46 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/11/28 20:52:06 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,17 +28,19 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 SRCS_1_FAKE = ft_printf \
-			 parser \
-		   is_format \
-		  print_until \
+			      parser \
+		        is_format \
+		       print_until \
 
 SRCS_1_TRUE = $(addsuffix .c, $(SRCS_1_FAKE))
 
-SRCS_2 = put_decimal.c \
-              put_hex.c \
-           put_pointer.c \
-             put_string.c \
-           put_usdecimal.c \
+SRCS_2_FAKE = put_decimal \
+              	   put_hex \
+                put_pointer \
+                  put_string \
+                put_usdecimal \
+
+SRCS_2_TRUE = $(addsuffix .c, $(SRCS_2_FAKE))
 
 SRCS_3 = ft_putchar.c \
            ft_calloc.c \
@@ -53,48 +55,65 @@ SRCS_1_PATH = ./srcs/pivot/
 SRCS_2_PATH = ./srcs/aux/
 SRCS_3_PATH = ./libs/
 OBJS_1 = $(patsubst %, $(OBJS_1_PATH)%, $(SRCS_1_TRUE:.c=.o))
-OBJS_2 = $(SRCS_2:%.c=$(OBJS_2_PATH)%.o)
-OBJS_3 = $(SRCS_3:%.c=$(OBJS_3_PATH)%.o)
+OBJS_2 = $(patsubst %, $(OBJS_2_PATH)%, $(SRCS_2_TRUE:.c=.o))
+OBJS_3 = $(patsubst %, $(OBJS_3_PATH)%, $(SRCS_3:.c=.o))
 
 ## RULES ##
 
 all: $(NAME)
 
-$(NAME): $(OBJS_1) $(OBJS_2)
-	@printf "$(YELLOW)Compiling libft Sources... $(DEF_COLOR)\n"
-	make printf -C $(SRCS_3_PATH)
-	@printf "$(GREEN)Sources Compiled, Objects Created! $(DEF_COLOR)\n"
-	@printf "$(RED)Creating Libftprintf.a... $(DEF_COLOR)\n"
-	ar -rs $(NAME) $(OBJS_1_PATH)*.o $(OBJS_2_PATH)*.o $(OBJS_3_PATH)*.o
-	@printf "$(GREEN)Libftprintf.a Created! $(DEF_COLOR)\n"
+$(NAME): $(OBJS_1) $(OBJS_2) $(OBJS_3)
+	@printf "\n$(YELLOW)Compiling libft Sources... $(DEF_COLOR)\n"
+	@printf "\n$(YELLOW)Creating libftprintf.a... $(DEF_COLOR)\n"
+	ar -rcs $(NAME) $(OBJS_1_PATH)*.o $(OBJS_2_PATH)*.o $(OBJS_3_PATH)*.o
+	@printf "\n$(WHITE)The $(RED)libftprintf.a $(WHITE)File Was Created In the Current Directory! $(DEF_COLOR)"
 
-LOOP : 
-	@mkdir -p $(OBJS_1_PATH)
-	@printf "$(CYAN)\nCompiling Primary Sources: $(DEF_COLOR)\n\n"
-	 @for file in $(SRCS_1_TRUE); do \
-	 	printf "$(GRAY)$$file... $(DEF_COLOR)\n"; \
-		printf "cc $(FLAGS) -c $(SRCS_1_PATH)$$file -o $(OBJS_1_PATH)$$file.o\n"; \
-		cc $(FLAGS) -c $(SRCS_1_PATH)$$file -o $(OBJS_1_PATH)$$file.o; \
-	 	printf "$(GREEN)$$file Compiled! $(DEF_COLOR)\n"; \
-	 done
-	@printf "$(CYAN)Primary Sources Compiled and Primary Objects Created in $(OBJS_1_PATH) $(DEF_COLOR)\n"
+$(OBJS_1_PATH)%.o: $(SRCS_1_PATH)%.c
+	@make LOOP1
 
-
-$(OBJS_1_PATH)%.o: LOOP $(SRCS_1_PATH)%.c
-	
 $(OBJS_2_PATH)%.o: $(SRCS_2_PATH)%.c
+	@make LOOP2
+
+$(OBJS_3_PATH)%.o: $(SRCS_3_PATH)%.c
+	make srcs_to_printf -C $(SRCS_3_PATH)
+
+LOOP1 : 
+	@mkdir -p $(OBJS_1_PATH)
+	@printf "$(YELLOW)\nCompiling Primary Sources: $(DEF_COLOR)\n\n"
+	 @for file in $(SRCS_1_FAKE); do \
+	 	if [ $(SRCS_1_PATH)$$file.c -nt $(OBJS_1_PATH)$$file.o ]; then \
+	 	printf "$(CYAN)Compiling $(WHITE)$$file.c... $(DEF_COLOR)\n"; \
+		printf "cc $(FLAGS) -c $(SRCS_1_PATH)$$file.c -o $(OBJS_1_PATH)$$file.o\n"; \
+		cc $(FLAGS) -c $(SRCS_1_PATH)$$file.c -o $(OBJS_1_PATH)$$file.o; \
+	 	printf "$(WHITE)$$file $(GREEN)OK $(DEF_COLOR)\n"; \
+		fi; \
+	 done
+	@printf "\n$(GREEN)Primary Objects Compiled Into $(WHITE)$(OBJS_1_PATH) $(DEF_COLOR)\n"
+
+LOOP2 :
 	@mkdir -p $(OBJS_2_PATH)
-	cc $(FLAGS) -c $< -o $@
+	@printf "$(YELLOW)\nCompiling Secondary Sources: $(DEF_COLOR)\n\n"
+	 @for file in $(SRCS_2_FAKE); do \
+	 	if [ $(SRCS_2_PATH)$$file.c -nt $(OBJS_2_PATH)$$file.o ]; then \
+	 	printf "$(CYAN)Compiling $(WHITE)$$file.c... $(DEF_COLOR)\n"; \
+		printf "cc $(FLAGS) -c $(SRCS_2_PATH)$$file.c -o $(OBJS_2_PATH)$$file.o\n"; \
+		cc $(FLAGS) -c $(SRCS_2_PATH)$$file.c -o $(OBJS_2_PATH)$$file.o; \
+	 	printf "$(WHITE)$$file $(GREEN)OK $(DEF_COLOR)\n"; \
+		fi; \
+	 done
+	@printf "\n$(GREEN)Secondary Objects Compiled Into $(WHITE)$(OBJS_2_PATH) $(DEF_COLOR)\n"
 
 clean:
-	rm -rf ./objs/
-	make clean_printf -C $(SRCS_3_PATH)
+	@rm -rf ./objs/
+	@printf "$(RED)Objects Directory Removed $(DEF_COLOR)\n"
+	@make clean_printf -C $(SRCS_3_PATH)
 
 fclean: clean
-	$(RM) $(NAME)
-	rm -f $(SRCS_3_PATH)*.a
+	@$(RM) $(NAME)
+	@rm -f $(SRCS_3_PATH)*.a
 	@rm -f compile_commands.json
 	@rm -f a.out
+	@printf "$(RED)All Archive Files Were Removed $(DEF_COLOR)\n"
 
 re: fclean all
 
