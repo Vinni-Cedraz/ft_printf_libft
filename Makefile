@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 12:57:13 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/11/28 20:52:06 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/11/28 21:48:45 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,17 +103,28 @@ LOOP2 :
 	 done
 	@printf "\n$(GREEN)Secondary Objects Compiled Into $(WHITE)$(OBJS_2_PATH) $(DEF_COLOR)\n"
 
+footer:
+	@printf "$(CYAN)$$FOOTER $(DEF_COLOR)"
+
 clean:
 	@rm -rf ./objs/
 	@printf "$(RED)Objects Directory Removed $(DEF_COLOR)\n"
 	@make clean_printf -C $(SRCS_3_PATH)
 
-fclean: clean
+fclean: clean footer
 	@$(RM) $(NAME)
 	@rm -f $(SRCS_3_PATH)*.a
 	@rm -f compile_commands.json
 	@rm -f a.out
-	@printf "$(RED)All Archive Files Were Removed $(DEF_COLOR)\n"
+	@printf "\n$(RED)All Archive Files Were Removed $(DEF_COLOR)\n"
+
+define FOOTER
+    \            _ \                  _)      
+   _ \   |   |  |   |  _ \\ \   / _ \  |  __| 
+  ___ \  |   |  __ <   __/ \ \ / (   | | |    
+_/    _\\__,_| _| \_\\___|  \_/ \___/ _|_|
+endef
+export FOOTER
 
 re: fclean all
 
