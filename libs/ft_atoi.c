@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:17 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/01 18:52:36 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/03 18:03:59 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,21 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	sign;
-	int	result;
+	register t_ools	nbr;
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	while ((nptr[i] >= 8 && nptr[i] <= 13) || nptr[i] == ' ')
-		i++;
-	if (nptr[i] == '-')
-		sign = -1;
-	if (nptr[i] == '-' || nptr[i] == '+')
-		i++;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	nbr.i = 0;
+	nbr.sign = 1;
+	nbr.result = 0;
+	while ((nptr[nbr.i] >= 8 && nptr[nbr.i] <= 13) || nptr[nbr.i] == ' ')
+		nbr.i++;
+	if (nptr[nbr.i] == '-')
+		nbr.sign = -1;
+	if (nptr[nbr.i] == '-' || nptr[nbr.i] == '+')
+		nbr.i++;
+	while (nptr[nbr.i] >= '0' && nptr[nbr.i] <= '9')
 	{
-		result = result * 10 + (nptr[i] - '0');
-		i++;
+		nbr.result = nbr.result * 10 + (nptr[nbr.i] - '0');
+		nbr.i++;
 	}
-	return (result * sign);
+	return (nbr.result * nbr.sign);
 }

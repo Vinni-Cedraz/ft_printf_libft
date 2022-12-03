@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:55:25 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/01 19:19:55 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:50:14 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	lil_sz = ft_strlen(little);
 	if (*little == '\0')
 		return ((char *)big);
-	while (*(++i + big) && i < len)
+	while (big[++i] && i < len)
 		if (!ft_strncmp(big + i, little, lil_sz) && i + lil_sz <= len)
 			return ((char *)(big + i));
 	return (NULL);

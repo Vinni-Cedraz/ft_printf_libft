@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_memorylen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/16 00:23:19 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/11/16 00:23:24 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022/11/20 09:00:29 by vcedraz-          #+#    #+#             */
+/*   Updated: 2022/11/20 09:23:11 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+// this function is used to check how many bytes were callocked and return the
+// number of bytes callocked
+
+size_t	ft_memorylen(void *ptr, size_t size)
 {
-	if (!lst)
-		return ;
-	del(lst->content);
-	free(lst);
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (((char *)ptr)[i] == '\0')
+		i++;
+	}
+	return (i);
 }

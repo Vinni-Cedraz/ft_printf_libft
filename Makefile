@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 12:57:13 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/11/28 21:48:45 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/03 20:24:33 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,19 +63,18 @@ OBJS_3 = $(patsubst %, $(OBJS_3_PATH)%, $(SRCS_3:.c=.o))
 all: $(NAME)
 
 $(NAME): $(OBJS_1) $(OBJS_2) $(OBJS_3)
-	@printf "\n$(YELLOW)Compiling libft Sources... $(DEF_COLOR)\n"
 	@printf "\n$(YELLOW)Creating libftprintf.a... $(DEF_COLOR)\n"
 	ar -rcs $(NAME) $(OBJS_1_PATH)*.o $(OBJS_2_PATH)*.o $(OBJS_3_PATH)*.o
 	@printf "\n$(WHITE)The $(RED)libftprintf.a $(WHITE)File Was Created In the Current Directory! $(DEF_COLOR)"
 
 $(OBJS_1_PATH)%.o: $(SRCS_1_PATH)%.c
-	@make LOOP1
+	@make LOOP1 --no-print-directory
 
 $(OBJS_2_PATH)%.o: $(SRCS_2_PATH)%.c
-	@make LOOP2
+	@make LOOP2 --no-print-directory
 
 $(OBJS_3_PATH)%.o: $(SRCS_3_PATH)%.c
-	make srcs_to_printf -C $(SRCS_3_PATH)
+	@make srcs_to_printf -C $(SRCS_3_PATH) --no-print-directory
 
 LOOP1 : 
 	@mkdir -p $(OBJS_1_PATH)
@@ -109,7 +108,7 @@ footer:
 clean:
 	@rm -rf ./objs/
 	@printf "$(RED)Objects Directory Removed $(DEF_COLOR)\n"
-	@make clean_printf -C $(SRCS_3_PATH)
+	@make clean_printf -C $(SRCS_3_PATH) --no-print-directory
 
 fclean: clean footer
 	@$(RM) $(NAME)

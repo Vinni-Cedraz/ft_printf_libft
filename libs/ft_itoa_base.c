@@ -5,44 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 23:40:20 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/28 21:26:24 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022/11/15 21:46:59 by vcedraz-          #+#    #+#             */
+/*   Updated: 2022/11/20 17:38:47 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-static size_t	ft_intlen_base(unsigned long long n, char *base)
-{
-	size_t				len;
-	unsigned long long	baselen;
+static size_t	converted_len(size_t n, char *base);
 
-	len = 1;
-	baselen = ft_strlen(base);
-	while (n >= baselen)
+char	*ft_itoa_base(size_t n, char *base)
+{
+	t_ools	tool;
+
+	tool.len = converted_len(n, base);
+	tool.baselen = ft_strlen(base);
+	tool.str = ft_calloc((tool.len + 1), sizeof(char));
+	if (!tool.str)
+		return (NULL);
+	while (tool.len--)
 	{
-		n /= baselen;
-		len++;
+		tool.str[tool.len] = base[n % tool.baselen];
+		n /= tool.baselen;
 	}
-	return (len);
+	return (tool.str);
 }
 
-char	*ft_itoa_base(unsigned long long n, char *base)
+static size_t	converted_len(size_t n, char *base)
 {
-	char				*str;
-	unsigned long long	numlen;
-	unsigned long long	baselen;
+	t_ools	nb;
 
-	numlen = ft_intlen_base(n, base);
-	baselen = ft_strlen(base);
-	str = ft_calloc((numlen + 1), sizeof(char));
-	if (!str)
-		return (NULL);
-	while (numlen)
+	nb.len = 1;
+	nb.baselen = ft_strlen(base);
+	while (n >= nb.baselen)
 	{
-		numlen = numlen - 1;
-		str[numlen] = base[n % baselen];
-		n /= baselen;
+		n /= nb.baselen;
+		nb.len++;
 	}
-	return (str);
+	return (nb.len);
 }

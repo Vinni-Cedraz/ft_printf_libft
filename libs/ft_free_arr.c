@@ -6,13 +6,13 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:34:35 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/03 15:40:38 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/03 13:10:12 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	ft_free_arr(char **arr, void *aux)
+void	ft_free_arr(char **arr, void **aux)
 {
 	while (*arr)
 		free(*arr++);

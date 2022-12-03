@@ -6,13 +6,15 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 20:09:59 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/22 23:41:07 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:00:24 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long	ft_putstr_fd(char *s, int fd)
+size_t	ft_putstr_fd(char *s, int fd)
 {
+	if (!s)
+		return (0);
 	return (write(fd, s, ft_strlen(s)));
 }

@@ -6,13 +6,13 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:00:43 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/01 18:58:54 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/11/15 22:20:05 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-typedef unsigned char	*t_uc;
+typedef unsigned char	*t_uc_ptr;
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
@@ -20,7 +20,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 
 	i = -1;
 	while (++i < n)
-		if (*((t_uc)s1 + i) != *((t_uc)s2 + i))
-			return (*((t_uc)s1 + i) - *((t_uc)s2 + i));
+		if (*((t_uc_ptr)s1 + i) != *((t_uc_ptr)s2 + i))
+			return (*((t_uc_ptr)s1 + i) - *((t_uc_ptr)s2 + i));
 	return (0);
 }
