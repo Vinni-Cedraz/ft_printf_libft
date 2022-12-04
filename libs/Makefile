@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 11:11:55 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/03 22:25:11 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/03 22:31:52 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,10 +112,10 @@ FDF_SRCS = ft_strlen \
 ft_memchr \
 ft_memcpy \
 ft_memmove \
+ft_strlcpy \
 ft_strdup \
 ft_strlcat \
 ft_strjoin \
-ft_strlcpy \
 ft_gnl \
 		
 OBJS = $(patsubst %, $(OBJS_PATH)%.o, $(SRCS))
