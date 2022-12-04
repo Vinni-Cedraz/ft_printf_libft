@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 11:11:55 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/03 20:31:08 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/03 21:18:46 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,12 +102,20 @@ ft_lstnew \
 ft_lstsize \
 	
 PRNTF_SRCS = ft_putchar \
-ft_itoa_base \
-ft_calloc \
 ft_strlen \
 ft_memset \
+ft_calloc \
+ft_itoa_base \
 
-FDF_SRCS = ft_gnl
+FDF_SRCS = ft_gnl \
+ft_strlen \
+ft_strjoin \
+ft_strlcpy \
+ft_strlcat \
+ft_strdup \
+ft_memcpy \
+ft_memchr \
+ft_memmove \
 		
 OBJS = $(patsubst %, $(OBJS_PATH)%.o, $(SRCS))
 OBJSB = $(patsubst %, $(OBJSB_PATH)%.o, $(BSRCS))
@@ -150,9 +158,9 @@ $(NAME) : $(OBJS)
 
 $(NAME_PRNTF) : $(OBJS_PRNTF)
 	@for file in $(MOD_OBJ_PRNTF); do \
-		ar -rsc $(NAME_PRNTF) $$file; \
 		printf "\n$(CYAN)linking: $(WHITE)$$file$(DEF_COLOR)\n"; \
 		printf "ar -rsc $(NAME_PRNTF) $$file\n"; \
+		ar -rsc $(NAME_PRNTF) $$file; \
 	done
 	@for file in $(PRNTF_SRCS); do \
 	if [ ! -f $(NAME_PRNTF) ]; then \
