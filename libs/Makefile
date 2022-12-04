@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 11:11:55 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/03 21:18:46 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/03 22:02:41 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,53 +46,60 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRCS = ft_isalpha \
-ft_isdigit \
-ft_isalnum \
-ft_isascii \
-ft_isprint \
-ft_strlen \
-ft_memset \
-ft_bzero \
-ft_memcpy \
-ft_memmove \
-ft_strlcpy \
-ft_strlcat \
-ft_toupper \
-ft_tolower \
-ft_strchr \
-ft_strrchr \
-ft_strncmp \
+SRCS = ft_atoi \
+ft_free_arr \
 ft_memchr \
 ft_memcmp \
+ft_putchar \
+ft_putchar_fd \
+ft_strlen \
+ft_strncmp \
+ft_word_counter \
+ft_abs \
+ft_isalpha \
+ft_isascii \
+ft_isdigit \
+ft_isprint \
+ft_lstadd_back \
+ft_lstadd_front \
+ft_lstdelone \
+ft_lstlast \
+ft_lstnew \
+ft_lstsize \
+ft_memcpy \
+ft_memorylen \
+ft_memset \
+ft_numlen \
+ft_putstr \
+ft_putstr_fd \
+ft_striteri \
+ft_strrchr \
+ft_strrev \
+ft_tolower \
+ft_toupper \
+ft_bzero \
+ft_memmove \
+ft_putendl_fd \
+ft_rev_int_tab \
+ft_sort_int_tab \
+ft_strchr \
+ft_strmapi \
 ft_strnstr \
-ft_atoi \
 ft_calloc \
+ft_isalnum \
 ft_strdup \
-ft_substr \
+ft_strlcat \
+ft_itoa_base \
 ft_strjoin \
 ft_strtrim \
-ft_split \
-ft_itoa \
-ft_strmapi \
-ft_striteri \
-ft_putchar_fd \
-ft_putstr_fd \
-ft_putendl_fd \
-ft_putnbr_fd \
-ft_abs \
-ft_strrev \
-ft_free_arr \
-ft_numlen \
-ft_word_counter \
-ft_putchar \
-ft_putstr \
-ft_itoa_base \
 ft_swap \
-ft_rev_int_tab \
+ft_putnbr_fd \
+ft_substr \
+ft_split \
+ft_strlcpy \
+ft_itoa \
 ft_hexdump \
-ft_sort_int_tab \
-ft_memorylen \
+ft_gnl \
 
 BSRCS = ft_lstadd_back \
 ft_lstadd_front \
@@ -304,3 +311,4 @@ fclean : clean
 re : fclean all
 
 phony : all clean fclean re bonus printf
+
