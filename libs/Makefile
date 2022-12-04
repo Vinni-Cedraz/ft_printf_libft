@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 11:11:55 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/03 22:02:41 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/03 22:25:11 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,12 +60,6 @@ ft_isalpha \
 ft_isascii \
 ft_isdigit \
 ft_isprint \
-ft_lstadd_back \
-ft_lstadd_front \
-ft_lstdelone \
-ft_lstlast \
-ft_lstnew \
-ft_lstsize \
 ft_memcpy \
 ft_memorylen \
 ft_memset \
@@ -114,15 +108,15 @@ ft_memset \
 ft_calloc \
 ft_itoa_base \
 
-FDF_SRCS = ft_gnl \
-ft_strlen \
+FDF_SRCS = ft_strlen \
+ft_memchr \
+ft_memcpy \
+ft_memmove \
+ft_strdup \
+ft_strlcat \
 ft_strjoin \
 ft_strlcpy \
-ft_strlcat \
-ft_strdup \
-ft_memcpy \
-ft_memchr \
-ft_memmove \
+ft_gnl \
 		
 OBJS = $(patsubst %, $(OBJS_PATH)%.o, $(SRCS))
 OBJSB = $(patsubst %, $(OBJSB_PATH)%.o, $(BSRCS))
