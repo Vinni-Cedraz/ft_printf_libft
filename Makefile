@@ -6,17 +6,24 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 12:57:13 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/03 20:24:33 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/05 18:42:43 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ## VARIABLES ##
 
-NAME     = libftprintf.a
-FLAGS    = -Wall -Wextra -Werror $(INCLUDES)
-INCLUDES = -I./includes -I./libs/libft
+#this makefile should follow the exact same pattern as the ../fdf/Makefile:
 
-# Colors
+NAME = printf.a
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+RM = rm -f
+AR = ar rcs
+INCLUDES = -Iincludes/ -Ilibft/
+OBJS_1_PATH = ./objs/pivot/
+OBJS_2_PATH = ./objs/aux/
+OBJS_3_PATH = ./libft/objs_printf/
+LIBFT_PATH = ./libft/
 DEF_COLOR = \033[0;39m
 GRAY = \033[0;37m
 RED = \033[0;91m
@@ -27,103 +34,140 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRCS_1_FAKE = ft_printf \
-			      parser \
-		        is_format \
-		       print_until \
+SRCS_1 = ft_printf \
+		  ft_printf \
+		   is_format \
+		       parser \
+		   print_until \
 
-SRCS_1_TRUE = $(addsuffix .c, $(SRCS_1_FAKE))
+SRCS_2 = put_decimal \
+		 	  put_hex \
+		   put_pointer \
+		     put_string \
+		   put_usdecimal \
 
-SRCS_2_FAKE = put_decimal \
-              	   put_hex \
-                put_pointer \
-                  put_string \
-                put_usdecimal \
+SRCS_3 = ft_putchar \
+           ft_calloc \
+            ft_strlen \
+             ft_memset \
+           ft_itoa_base \ 
 
-SRCS_2_TRUE = $(addsuffix .c, $(SRCS_2_FAKE))
-
-SRCS_3 = ft_putchar.c \
-           ft_calloc.c \
-            ft_strlen.c \
-             ft_memset.c \
-           ft_itoa_base.c \
-
-OBJS_1_PATH = ./objs/pivot/
-OBJS_2_PATH = ./objs/aux/
-OBJS_3_PATH = ./libs/objs_printf/
 SRCS_1_PATH = ./srcs/pivot/
 SRCS_2_PATH = ./srcs/aux/
-SRCS_3_PATH = ./libs/
-OBJS_1 = $(patsubst %, $(OBJS_1_PATH)%, $(SRCS_1_TRUE:.c=.o))
-OBJS_2 = $(patsubst %, $(OBJS_2_PATH)%, $(SRCS_2_TRUE:.c=.o))
-OBJS_3 = $(patsubst %, $(OBJS_3_PATH)%, $(SRCS_3:.c=.o))
+SRCS_3_PATH = ./libft/
+OBJS_1 = $(patsubst %, $(OBJS_1_PATH)%.o, $(SRCS_1))
+OBJS_2 = $(patsubst %, $(OBJS_2_PATH)%.o, $(SRCS_2))
+OBJS_3 = $(patsubst %, $(OBJS_3_PATH)%.o, $(SRCS_3))
+OBJS_1_MOD = $(shell find $(OBJS_1_PATH)*.o -newer $(NAME))
+OBJS_2_MOD = $(shell find $(OBJS_2_PATH)*.o -newer $(NAME))
+OBJS_3_MOD = $(shell find $(OBJS_3_PATH)*.o -newer $(NAME))
+
 
 ## RULES ##
-
 all: $(NAME)
 
-$(NAME): $(OBJS_1) $(OBJS_2) $(OBJS_3)
-	@printf "\n$(YELLOW)Creating libftprintf.a... $(DEF_COLOR)\n"
-	ar -rcs $(NAME) $(OBJS_1_PATH)*.o $(OBJS_2_PATH)*.o $(OBJS_3_PATH)*.o
-	@printf "\n$(WHITE)The $(RED)libftprintf.a $(WHITE)File Was Created In the Current Directory! $(DEF_COLOR)"
+libft :
+	@make srcs_to_printf -C  $(LIBFT_PATH)
+		
+$(NAME): $(OBJS_1) $(OBJS_2)
+	@make srcs_to_printf -C $(LIBFT_PATH) --no-print-directory
+	@printf "\n$(YELLOW)Linking Objects to Library...$(DEF_COLOR)\n";
+	@for file in $(OBJS_1_MOD); do \
+		printf "\n$(CYAN)Linking $(WHITE)$$file $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
+		printf "ar -rsc $(NAME) $$file\n"; \
+		ar -rsc $(NAME) $$file; \
+		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
+	done
+	@for file in $(OBJS_2_MOD); do \
+		printf "\n$(CYAN)Linking $(WHITE)$$file $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
+		printf "ar -rsc $(NAME) $$file\n"; \
+		ar -rsc $(NAME) $$file; \
+		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
+	done
+	@for file in $(OBJS_3_MOD); do \
+		printf "\n$(CYAN)Linking $(WHITE)$$file $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
+		printf "ar -rsc $(NAME) $$file\n"; \
+		ar -rsc $(NAME) $$file; \
+		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
+	done
+	@for file in $(SRCS_1); do \
+		if [[ -z "$$(nm $(NAME) | grep $${file}.o:)" ]]; then \
+		printf "\n$(CYAN)Linking $(WHITE)$$file.o $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
+		ar -rsc $(NAME) $(OBJS_1_PATH)$$file.o; \
+		printf "ar -rsc $(NAME) $$file.o\n"; \
+		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
+	fi; \
+	done
+	@for file in $(SRCS_2); do \
+		if [[ -z "$$(nm $(NAME) | grep $${file}.o:)" ]]; then \
+		printf "\n$(CYAN)Linking $(WHITE)$$file.o $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
+		ar -rsc $(NAME) $(OBJS_2_PATH)$$file.o; \
+		printf "ar -rsc $(NAME) $$file.o\n"; \
+		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
+	fi; \
+	done
+	@for file in $(SRCS_3); do \
+		if [[ -z "$$(nm $(NAME) | grep $${file}.o:)" ]]; then \
+		printf "\n$(CYAN)Linking $(WHITE)$$file.o $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
+		ar -rsc $(NAME) $(OBJS_3_PATH)$$file.o; \
+		printf "ar -rsc $(NAME) $$file.o\n"; \
+		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
+	fi; \
+	done
 
+#these are the correct pre-requisites for the objects:
 $(OBJS_1_PATH)%.o: $(SRCS_1_PATH)%.c
-	@make LOOP1 --no-print-directory
+	@mkdir -p $(OBJS_1_PATH)
+	@make SRCS_1_CC --no-print-directory
 
 $(OBJS_2_PATH)%.o: $(SRCS_2_PATH)%.c
-	@make LOOP2 --no-print-directory
-
-$(OBJS_3_PATH)%.o: $(SRCS_3_PATH)%.c
-	@make srcs_to_printf -C $(SRCS_3_PATH) --no-print-directory
-
-LOOP1 : 
-	@mkdir -p $(OBJS_1_PATH)
-	@printf "$(YELLOW)\nCompiling Primary Sources: $(DEF_COLOR)\n\n"
-	 @for file in $(SRCS_1_FAKE); do \
-	 	if [ $(SRCS_1_PATH)$$file.c -nt $(OBJS_1_PATH)$$file.o ]; then \
-	 	printf "$(CYAN)Compiling $(WHITE)$$file.c... $(DEF_COLOR)\n"; \
-		printf "cc $(FLAGS) -c $(SRCS_1_PATH)$$file.c -o $(OBJS_1_PATH)$$file.o\n"; \
-		cc $(FLAGS) -c $(SRCS_1_PATH)$$file.c -o $(OBJS_1_PATH)$$file.o; \
-	 	printf "$(WHITE)$$file $(GREEN)OK $(DEF_COLOR)\n"; \
-		fi; \
-	 done
-	@printf "\n$(GREEN)Primary Objects Compiled Into $(WHITE)$(OBJS_1_PATH) $(DEF_COLOR)\n"
-
-LOOP2 :
 	@mkdir -p $(OBJS_2_PATH)
-	@printf "$(YELLOW)\nCompiling Secondary Sources: $(DEF_COLOR)\n\n"
-	 @for file in $(SRCS_2_FAKE); do \
-	 	if [ $(SRCS_2_PATH)$$file.c -nt $(OBJS_2_PATH)$$file.o ]; then \
-	 	printf "$(CYAN)Compiling $(WHITE)$$file.c... $(DEF_COLOR)\n"; \
-		printf "cc $(FLAGS) -c $(SRCS_2_PATH)$$file.c -o $(OBJS_2_PATH)$$file.o\n"; \
-		cc $(FLAGS) -c $(SRCS_2_PATH)$$file.c -o $(OBJS_2_PATH)$$file.o; \
-	 	printf "$(WHITE)$$file $(GREEN)OK $(DEF_COLOR)\n"; \
-		fi; \
-	 done
-	@printf "\n$(GREEN)Secondary Objects Compiled Into $(WHITE)$(OBJS_2_PATH) $(DEF_COLOR)\n"
+	@make SRCS_2_CC --no-print-directory
 
-footer:
-	@printf "$(CYAN)$$FOOTER $(DEF_COLOR)"
+SRCS_1_CC:
+	@for file in $(SRCS_1); do \
+	if [ $(SRCS_1_PATH)$$file.c -nt $(OBJS_1_PATH)$$file.o ]; then \
+		printf "\n$(CYAN)Compiling $(WHITE)$$file.c $(DEF_COLOR)\n"; \
+		printf "$(CC) $(CFLAGS) $(INCLUDES) -c $(SRCS_1_PATH)$$file.c -o $(OBJS_1_PATH)$$file.o\n"; \
+		$(CC) $(CFLAGS) $(INCLUDES) -c $(SRCS_1_PATH)$$file.c -o $(OBJS_1_PATH)$$file.o; \
+		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
+	fi; \
+	done
+
+SRCS_2_CC:
+	@for file in $(SRCS_2); do \
+	if [ $(SRCS_2_PATH)$$file.c -nt $(OBJS_2_PATH)$$file.o ]; then \
+		printf "\n$(CYAN)Compiling $(WHITE)$$file.c $(DEF_COLOR)\n"; \
+		printf "$(CC) $(CFLAGS) $(INCLUDES) -c $(SRCS_2_PATH)$$file.c -o $(OBJS_2_PATH)$$file.o\n"; \
+		$(CC) $(CFLAGS) $(INCLUDES) -c $(SRCS_2_PATH)$$file.c -o $(OBJS_2_PATH)$$file.o; \
+		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
+	fi; \
+	done
 
 clean:
+	@if [ -d $(OBJS_1_PATH) ]; then \
+		printf "$(GRAY)rm -rf $(OBJS_1_PATH)$(DEF_COLOR)"; \
+		printf "\n$(RED)Primary Objects Deleted.$(DEF_COLOR)\n"; \
+		rm -rf $(OBJS_1_PATH); \
+	fi
+	@if [ -d $(OBJS_2_PATH) ]; then \
+		printf "$(GRAY)rm -rf $(OBJS_2_PATH)$(DEF_COLOR)"; \
+		printf "\n$(RED)Secondary Objects Deleted.$(DEF_COLOR)\n"; \
+		rm -rf $(OBJS_2_PATH); \
+	fi
 	@rm -rf ./objs/
-	@printf "$(RED)Objects Directory Removed $(DEF_COLOR)\n"
-	@make clean_printf -C $(SRCS_3_PATH) --no-print-directory
+	@if [ -d $(OBJS_3_PATH) ]; then \
+		printf "$(GRAY)rm -rf $(OBJS_3_PATH)$(DEF_COLOR)"; \
+		printf "\n$(RED)Objects From Libft Deleted.$(DEF_COLOR)\n"; \
+		rm -rf $(OBJS_3_PATH); \
+	fi
 
-fclean: clean footer
-	@$(RM) $(NAME)
-	@rm -f $(SRCS_3_PATH)*.a
-	@rm -f compile_commands.json
-	@rm -f a.out
-	@printf "\n$(RED)All Archive Files Were Removed $(DEF_COLOR)\n"
-
-define FOOTER
-    \            _ \                  _)      
-   _ \   |   |  |   |  _ \\ \   / _ \  |  __| 
-  ___ \  |   |  __ <   __/ \ \ / (   | | |    
-_/    _\\__,_| _| \_\\___|  \_/ \___/ _|_|
-endef
-export FOOTER
+fclean: clean
+	@if [ -f $(NAME) ]; then \
+		rm -f $(NAME); \
+		printf "$(GRAY)rm -f $(NAME)$(DEF_COLOR)\n"; \
+		printf "$(RED)$(NAME) $(GRAY)Deleted, Au Revoir.$(DEF_COLOR)\n"; \
+	fi
 
 re: fclean all
 
