@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 13:21:51 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/07 12:14:09 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/07 19:53:33 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define ZERO_EXCEPTION_STR "(nil)"
 
 // this strut is just a box of tools, t_ools, got it? xD
-typedef struct s
+typedef struct s_tools
 {
 	size_t	i;
 	size_t	chars;

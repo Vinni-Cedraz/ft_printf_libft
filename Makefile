@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 12:57:13 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/07 18:57:45 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/07 19:46:54 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 AR = ar rcs
-INCLUDES = -Iincludes/ -Ilibft/
+INCLUDES = -Iincludes/
 OBJS_1_PATH = ./objs/pivot/
 OBJS_2_PATH = ./objs/aux/
 OBJS_3_PATH = ./libft/objs_printf/
