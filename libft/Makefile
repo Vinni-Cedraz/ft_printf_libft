@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 11:11:55 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/07 16:17:58 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/07 17:42:29 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -148,7 +148,7 @@ bonus : $(NAME_BONUS)
 all_all: all srcs_to_printf srcs_to_fdf bonus
 
 $(NAME) : $(OBJS) 
-	@printf "\n$(YELLOW)Linking Objects to Library...$(DEF_COLOR)\n";
+	@printf "\n$(YELLOW)Linking Mandatory Objects to Library...$(DEF_COLOR)\n";
 	@for file in $(MOD_OBJ); do \
 		printf "\n$(CYAN)Linking $(WHITE)$$file $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
 		printf "ar -rsc $(NAME) $$file\n"; \
@@ -159,7 +159,7 @@ $(NAME) : $(OBJS)
 		if [[ -z "$$(nm $(NAME) | grep $${file}.o:)" ]]; then \
 		printf "\n$(CYAN)Linking $(WHITE)$$file.o $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
 		ar -rsc $(NAME) $(OBJS_PATH)$$file.o; \
-		printf "ar -rsc $(NAME) $$file.o\n"; \
+		printf "ar -rsc $(NAME) $(OBJS_PATH)$$file.o\n"; \
 		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
 	fi; \
 	done
@@ -182,7 +182,7 @@ $(NAME_PRNTF) : $(OBJS_PRNTF)
 	done
 
 $(NAME_FDF) : $(OBJS_FDF) 
-	@printf "\n$(YELLOW)Linking Objects to Library...$(DEF_COLOR)\n";
+	@printf "\n$(YELLOW)Linking fdf Objects From libft to Library...$(DEF_COLOR)\n";
 	@for file in $(MOD_OBJ_FDF); do \
 		printf "\n$(CYAN)Linking $(WHITE)$$file $(GRAY)to $(RED)$(NAME_FDF)$(DEF_COLOR)\n"; \
 		printf "ar -rsc $(NAME_FDF) $$file\n"; \
@@ -199,8 +199,8 @@ $(NAME_FDF) : $(OBJS_FDF)
 	done
 
 $(NAME_BONUS) : $(NAME) $(OBJSB) 
-	@printf "\n$(YELLOW)Linking Objects to Library...$(DEF_COLOR)\n";
-	@cp $(NAME) $(NAME_BONUS)
+	@printf "\n$(YELLOW)Creating $(NAME_BONUS) Library With ALL Objects from libft...$(DEF_COLOR)\n";
+	cp $(NAME) $(NAME_BONUS)
 	@for file in $(MOD_OBJB); do \
 		printf "\n$(CYAN)Linking $(WHITE)$$file $(GRAY)to $(RED)$(NAME_BONUS)$(DEF_COLOR)\n"; \
 		printf "ar -rsc $(NAME_BONUS) $$file\n"; \
@@ -211,7 +211,7 @@ $(NAME_BONUS) : $(NAME) $(OBJSB)
 	if [[ -z "$$(nm $(NAME_BONUS) | grep $${file}.o:)" ]]; then \
 		ar -rsc $(NAME_BONUS) $(OBJSB_PATH)$$file.o; \
 		printf "\n$(CYAN)Linking $(WHITE)$$file $(GRAY)to $(RED)$(NAME_BONUS)$(DEF_COLOR)\n"; \
-		printf "ar -rsc $(NAME_BONUS) $$file.o\n"; \
+		printf "ar -rsc $(NAME_BONUS) $(OBJSB_PATH)$$file.o\n"; \
 		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
 	fi; \
 	done
@@ -291,7 +291,17 @@ clean:
 		rm -rf $(OBJS_PATH); \
 		printf "$(RED)Libft Objects Removed$(DEF_COLOR)\n"; \
 	fi
+	@if [ -d $(OBJSB_PATH) ]; then \
+		rm -rf $(OBJSB_PATH); \
+		printf "$(RED)Libft Bonus Objects Removed$(DEF_COLOR)\n"; \
+	fi
 	@rm -f a.out
+
+clean_libft:
+	@if [ -d $(OBJS_PATH) ]; then \
+		rm -rf $(OBJS_PATH); \
+		printf "$(RED)Libft Objects Removed$(DEF_COLOR)\n"; \
+	fi
 
 clean_printf:
 	@if [ -d $(PRNTF_OBJS_PATH) ]; then \
@@ -318,6 +328,14 @@ fclean_all : fclean_printf fclean_fdf fclean_bonus fclean
 
 fclean :
 	@make clean --no-print-directory;
+	@if [ -f $(NAME) ]; then \
+		rm -f $(NAME); \
+		printf "$(RED)$(NAME) Removed$(DEF_COLOR)\n"; \
+	fi
+	@make fclean_bonus --no-print-directory
+
+fclean_libft :
+	@make clean_libft --no-print-directory;
 	@if [ -f $(NAME) ]; then \
 		rm -f $(NAME); \
 		printf "$(RED)$(NAME) Removed$(DEF_COLOR)\n"; \
