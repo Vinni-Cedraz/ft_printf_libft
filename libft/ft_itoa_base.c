@@ -6,9 +6,10 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 21:46:59 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/11/20 17:38:47 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/07 18:58:24 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static size_t	converted_len(size_t n, char *base);

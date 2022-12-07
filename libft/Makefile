@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 11:11:55 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/07 17:42:29 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/07 18:25:23 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -176,7 +176,7 @@ $(NAME_PRNTF) : $(OBJS_PRNTF)
 	if [[ -z "$$(nm $(NAME_PRNTF) | grep $${file}.o:)" ]]; then \
 		printf "\n$(CYAN)Linking $(WHITE)$$file $(GRAY)to $(RED)$(NAME_PRNTF)$(DEF_COLOR)\n"; \
 		ar -rsc $(NAME_PRNTF) $(PRNTF_OBJS_PATH)$$file.o; \
-		printf "ar -rsc $(NAME_PRNTF) $$file.o\n"; \
+		printf "ar -rsc $(NAME_PRNTF) $(PRNTF_OBJS_PATH)$$file.o\n"; \
 		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
 	fi; \
 	done
