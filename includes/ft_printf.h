@@ -6,17 +6,18 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 13:21:51 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/11/16 15:53:18 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/07 12:14:09 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft.h"
 # include <stdarg.h>
 # include <stddef.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include "libft.h"
 
 # define HEX_BASE "0123456789abcdef"
 # define HEX_BASE_UPPER "0123456789ABCDEF"
@@ -34,6 +35,30 @@ typedef struct s
 	size_t	prntd;
 	size_t	chckd;
 	char	*str;
+	char	**str_arr;
+	char	*res;
+	char	*tmp;
+	char	*start;
+	char	*to_ascii;
+	char	*end;
+	size_t	len;
+	size_t	size;
+	size_t	words;
+	size_t	half;
+	size_t	baselen;
+	size_t	sign;
+	size_t	from_start;
+	size_t	from_end;
+	size_t	result;
+	size_t	abs;
+	size_t	max;
+	char	*lnbrk;
+	char	*read;
+	char	*wth_all;
+	char	*bfr_brk;
+	char	*aftbrk;
+	int		aftbrk_len;
+	int   	bfrbrk_len;
 	va_list	list;
 }	t_ools;
 

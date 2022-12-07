@@ -6,14 +6,13 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 12:57:13 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/05 18:42:43 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/07 12:19:18 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ## VARIABLES ##
 
-#this makefile should follow the exact same pattern as the ../fdf/Makefile:
-
+SHELL := /bin/bash
 NAME = printf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -61,7 +60,6 @@ OBJS_3 = $(patsubst %, $(OBJS_3_PATH)%.o, $(SRCS_3))
 OBJS_1_MOD = $(shell find $(OBJS_1_PATH)*.o -newer $(NAME))
 OBJS_2_MOD = $(shell find $(OBJS_2_PATH)*.o -newer $(NAME))
 OBJS_3_MOD = $(shell find $(OBJS_3_PATH)*.o -newer $(NAME))
-
 
 ## RULES ##
 all: $(NAME)

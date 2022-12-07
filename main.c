@@ -6,14 +6,15 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:50:01 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/28 21:26:40 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/07 12:18:15 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
+#include <stddef.h>
 #include <stdio.h>
 
-long	ft_putstr_fd(char *s, int fd)
+size_t	ft_putstr_fd(char *s, int fd)
 {
 	return (write(fd, s, ft_strlen(s)));
 }
@@ -35,7 +36,7 @@ int	main(void)
 		printf("Error\n");
 	else
 		printf("OK\n");
-	if (ft_printf("%Jas\n") == ft_putstr_fd("%Jas\n", 1))
+	if (ft_printf("%Jas\n") == (int)ft_putstr_fd("%Jas\n", 1))
 		printf("Error\n");
 	else
 		printf("OK\n");

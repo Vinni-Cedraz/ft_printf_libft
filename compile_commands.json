@@ -1,0 +1,146 @@
+[
+ {
+  "directory": "/home/vcedraz-/42/ft_printf_libft",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes/",
+   "-Ilibft/",
+   "-c",
+   "./srcs/pivot/ft_printf.c",
+   "-o",
+   "./objs/pivot/ft_printf.o"
+  ],
+  "file": "./srcs/pivot/ft_printf.c"
+ },
+ {
+  "directory": "/home/vcedraz-/42/ft_printf_libft",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes/",
+   "-Ilibft/",
+   "-c",
+   "./srcs/pivot/is_format.c",
+   "-o",
+   "./objs/pivot/is_format.o"
+  ],
+  "file": "./srcs/pivot/is_format.c"
+ },
+ {
+  "directory": "/home/vcedraz-/42/ft_printf_libft",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes/",
+   "-Ilibft/",
+   "-c",
+   "./srcs/pivot/parser.c",
+   "-o",
+   "./objs/pivot/parser.o"
+  ],
+  "file": "./srcs/pivot/parser.c"
+ },
+ {
+  "directory": "/home/vcedraz-/42/ft_printf_libft",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes/",
+   "-Ilibft/",
+   "-c",
+   "./srcs/pivot/print_until.c",
+   "-o",
+   "./objs/pivot/print_until.o"
+  ],
+  "file": "./srcs/pivot/print_until.c"
+ },
+ {
+  "directory": "/home/vcedraz-/42/ft_printf_libft",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes/",
+   "-Ilibft/",
+   "-c",
+   "./srcs/aux/put_decimal.c",
+   "-o",
+   "./objs/aux/put_decimal.o"
+  ],
+  "file": "./srcs/aux/put_decimal.c"
+ },
+ {
+  "directory": "/home/vcedraz-/42/ft_printf_libft",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes/",
+   "-Ilibft/",
+   "-c",
+   "./srcs/aux/put_hex.c",
+   "-o",
+   "./objs/aux/put_hex.o"
+  ],
+  "file": "./srcs/aux/put_hex.c"
+ },
+ {
+  "directory": "/home/vcedraz-/42/ft_printf_libft",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes/",
+   "-Ilibft/",
+   "-c",
+   "./srcs/aux/put_pointer.c",
+   "-o",
+   "./objs/aux/put_pointer.o"
+  ],
+  "file": "./srcs/aux/put_pointer.c"
+ },
+ {
+  "directory": "/home/vcedraz-/42/ft_printf_libft",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes/",
+   "-Ilibft/",
+   "-c",
+   "./srcs/aux/put_string.c",
+   "-o",
+   "./objs/aux/put_string.o"
+  ],
+  "file": "./srcs/aux/put_string.c"
+ },
+ {
+  "directory": "/home/vcedraz-/42/ft_printf_libft",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes/",
+   "-Ilibft/",
+   "-c",
+   "./srcs/aux/put_usdecimal.c",
+   "-o",
+   "./objs/aux/put_usdecimal.o"
+  ],
+  "file": "./srcs/aux/put_usdecimal.c"
+ }
+]
