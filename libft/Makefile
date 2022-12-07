@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 11:11:55 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/05 12:10:15 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/07 16:17:58 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = libft.a
 
 NAME_BONUS = libft_bonus.a
 
-NAME_PRNTF = srcs_to_printf.a
+NAME_PRNTF = ../libftprintf.a
 
 NAME_FDF = srcs_to_fdf.a
 
@@ -165,7 +165,7 @@ $(NAME) : $(OBJS)
 	done
 
 $(NAME_PRNTF) : $(OBJS_PRNTF) 
-	@printf "\n$(YELLOW)Linking Objects to Library...$(DEF_COLOR)\n";
+	@printf "\n$(YELLOW)Linking Printf Objects From Libft to Library...$(DEF_COLOR)\n";
 	@for file in $(MOD_OBJ_PRNTF); do \
 		printf "\n$(CYAN)Linking $(WHITE)$$file $(GRAY)to $(RED)$(NAME_PRNTF)$(DEF_COLOR)\n"; \
 		printf "ar -rsc $(NAME_PRNTF) $$file\n"; \
@@ -226,7 +226,7 @@ $(OBJSB_PATH)%.o : %.c
 	@make BONUS_LIBFT_LOOP --no-print-directory
 
 $(PRNTF_OBJS_PATH)%.o : %.c
-	@printf "\n$(YELLOW)Compiling libft Sources... $(DEF_COLOR)\n\n"
+	@printf "\n$(YELLOW)Compiling Libft Sources to Printf... $(DEF_COLOR)\n\n"
 	@make PRNTF_LOOP --no-print-directory
 
 $(FDF_OBJS_PATH)%.o : %.c

@@ -6,14 +6,14 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/25 12:57:13 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/07 12:19:18 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/07 16:25:20 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ## VARIABLES ##
 
 SHELL := /bin/bash
-NAME = printf.a
+NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
@@ -64,56 +64,44 @@ OBJS_3_MOD = $(shell find $(OBJS_3_PATH)*.o -newer $(NAME))
 ## RULES ##
 all: $(NAME)
 
-libft :
-	@make srcs_to_printf -C  $(LIBFT_PATH)
+libft_srcs_to_printf:
+	@make srcs_to_printf -C  $(LIBFT_PATH) --no-print-directory
 		
 $(NAME): $(OBJS_1) $(OBJS_2)
-	@make srcs_to_printf -C $(LIBFT_PATH) --no-print-directory
-	@printf "\n$(YELLOW)Linking Objects to Library...$(DEF_COLOR)\n";
+	@make libft_srcs_to_printf --no-print-directory
 	@for file in $(OBJS_1_MOD); do \
+		printf "\n$(YELLOW)a primary printf object has been modified...$(DEF_COLOR)"; \
 		printf "\n$(CYAN)Linking $(WHITE)$$file $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
 		printf "ar -rsc $(NAME) $$file\n"; \
 		ar -rsc $(NAME) $$file; \
 		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
 	done
 	@for file in $(OBJS_2_MOD); do \
+		printf "\n$(YELLOW)a secondary printf object has been modified...$(DEF_COLOR)"; \
 		printf "\n$(CYAN)Linking $(WHITE)$$file $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
 		printf "ar -rsc $(NAME) $$file\n"; \
 		ar -rsc $(NAME) $$file; \
 		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
 	done
-	@for file in $(OBJS_3_MOD); do \
-		printf "\n$(CYAN)Linking $(WHITE)$$file $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
-		printf "ar -rsc $(NAME) $$file\n"; \
-		ar -rsc $(NAME) $$file; \
-		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
-	done
+	@printf "\n$(YELLOW)Linking Primary Printf Objects to Library...$(DEF_COLOR)";
 	@for file in $(SRCS_1); do \
 		if [[ -z "$$(nm $(NAME) | grep $${file}.o:)" ]]; then \
 		printf "\n$(CYAN)Linking $(WHITE)$$file.o $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
 		ar -rsc $(NAME) $(OBJS_1_PATH)$$file.o; \
-		printf "ar -rsc $(NAME) $$file.o\n"; \
+		printf "ar -rsc $(NAME) $(OBJS_1_PATH)$$file.o\n"; \
 		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
 	fi; \
 	done
+	@printf "\n$(YELLOW)Linking Secondary Printf Objects to Library...$(DEF_COLOR)";
 	@for file in $(SRCS_2); do \
 		if [[ -z "$$(nm $(NAME) | grep $${file}.o:)" ]]; then \
 		printf "\n$(CYAN)Linking $(WHITE)$$file.o $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
 		ar -rsc $(NAME) $(OBJS_2_PATH)$$file.o; \
-		printf "ar -rsc $(NAME) $$file.o\n"; \
-		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
-	fi; \
-	done
-	@for file in $(SRCS_3); do \
-		if [[ -z "$$(nm $(NAME) | grep $${file}.o:)" ]]; then \
-		printf "\n$(CYAN)Linking $(WHITE)$$file.o $(GRAY)to $(RED)$(NAME)$(DEF_COLOR)\n"; \
-		ar -rsc $(NAME) $(OBJS_3_PATH)$$file.o; \
-		printf "ar -rsc $(NAME) $$file.o\n"; \
+		printf "ar -rsc $(NAME) $(OBJS_2_PATH)$$file.o\n"; \
 		printf "$(WHITE)$$file $(GREEN)OK$(DEF_COLOR)\n"; \
 	fi; \
 	done
 
-#these are the correct pre-requisites for the objects:
 $(OBJS_1_PATH)%.o: $(SRCS_1_PATH)%.c
 	@mkdir -p $(OBJS_1_PATH)
 	@make SRCS_1_CC --no-print-directory
@@ -123,6 +111,7 @@ $(OBJS_2_PATH)%.o: $(SRCS_2_PATH)%.c
 	@make SRCS_2_CC --no-print-directory
 
 SRCS_1_CC:
+	@printf "\n$(YELLOW)Compiling Printf Primary Functions...$(DEF_COLOR)\n";
 	@for file in $(SRCS_1); do \
 	if [ $(SRCS_1_PATH)$$file.c -nt $(OBJS_1_PATH)$$file.o ]; then \
 		printf "\n$(CYAN)Compiling $(WHITE)$$file.c $(DEF_COLOR)\n"; \
@@ -133,6 +122,7 @@ SRCS_1_CC:
 	done
 
 SRCS_2_CC:
+	@printf "\n$(YELLOW)Compiling Printf Secondary Functions...$(DEF_COLOR)\n";
 	@for file in $(SRCS_2); do \
 	if [ $(SRCS_2_PATH)$$file.c -nt $(OBJS_2_PATH)$$file.o ]; then \
 		printf "\n$(CYAN)Compiling $(WHITE)$$file.c $(DEF_COLOR)\n"; \
@@ -161,11 +151,13 @@ clean:
 	fi
 
 fclean: clean
+	@make fclean_all -C $(LIBFT_PATH) --no-print-directory
 	@if [ -f $(NAME) ]; then \
 		rm -f $(NAME); \
 		printf "$(GRAY)rm -f $(NAME)$(DEF_COLOR)\n"; \
 		printf "$(RED)$(NAME) $(GRAY)Deleted, Au Revoir.$(DEF_COLOR)\n"; \
 	fi
+	@rm -f a.out
 
 re: fclean all
 
