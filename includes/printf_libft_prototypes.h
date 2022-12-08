@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   printf_libft_prototypes.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 09:46:16 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/07 12:31:15 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022/10/22 13:21:51 by vcedraz-          #+#    #+#             */
+/*   Updated: 2022/12/08 13:01:38 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define INT_MIN -2147483648
-# define HEX "0123456789abcdef"
-# define LIBFT_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-# include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+#include "printf_libft_syslibs.h"
 
-# ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10000
-# endif
+// PRINTF PROTAGONISTS:
 
-typedef unsigned char	t_uc;
+int	ft_printf(const char *format, ...);
 
-typedef struct s_list
-{
-	void				*content;
-	struct s_list		*next;
-}						t_list;
+int	print_until(const char *str, va_list args);
+
+int	is_format(char c);
+
+int	parser(int c, va_list args);
+
+// auxiliary functions (writers):
+int	put_string(char *str);
+int	put_pointer(unsigned long long value);
+int	put_decimal(long value);
+int	put_usdecimal(long value);
+int	put_hex(unsigned long long value, int is_upper);
 
 // ASCII TYPE IDENTIFICATION FUNCTIONS:
 
@@ -184,5 +184,4 @@ size_t					ft_memorylen(void *ptr, size_t size);
 // this is ft_gnl (get next line):
 char					*ft_gnl(int fd);
 
-
-#endif // !LIBFT_H
+#endif

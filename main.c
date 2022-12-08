@@ -6,12 +6,11 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:50:01 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/07 12:18:15 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/08 13:16:10 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include <stddef.h>
+#include "includes/printf_libft_includes.h"
 #include <stdio.h>
 
 size_t	ft_putstr_fd(char *s, int fd)

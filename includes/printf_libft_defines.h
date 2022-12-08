@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_hex.c                                          :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022 23:28:18 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/07 12:19:49 by vcedraz-         ###   ########.fr       */
+/*   Created: 2022/12/08 12:17:45 by vcedraz-          #+#    #+#             */
+/*   Updated: 2022/12/08 12:18:57 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf_libft_includes.h"
+# define INT_MIN -2147483648
+# define HEX "0123456789abcdef"
 
-int	put_hex(unsigned long long value, int is_upper)
-{
-	t_ools	type;
+# ifndef BUFFER_SIZE
+# define BUFFER_SIZE 10000
+# endif
 
-	if (is_upper)
-	{
-		type.str = ft_itoa_base(value, HEX_BASE_UPPER);
-		type.counter = put_string(type.str);
-		return (free(type.str), type.counter);
-	}
-	type.str = ft_itoa_base(value, HEX_BASE);
-	type.counter = put_string(type.str);
-	return (free(type.str), type.counter);
-}
+# define HEX_BASE "0123456789abcdef"
+# define HEX_BASE_UPPER "0123456789ABCDEF"
+# define DECIMAL_BASE "0123456789"
+# define PRECEDING_STR "0x"
+# define EXCEPTION_STR "(null)"
+# define ZERO_EXCEPTION_STR "(nil)"
