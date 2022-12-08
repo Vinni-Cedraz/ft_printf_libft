@@ -6,14 +6,15 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:19:31 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/08 13:01:18 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:45:04 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
+#ifndef PRINTF_LIBFT_STRUCTS_H
+# define PRINTF_LIBFT_STRUCTS_H
 
-#include "printf_libft_syslibs.h"
+#include <stdlib.h>
+#include <stdarg.h>
 
 typedef unsigned char	t_uc;
 

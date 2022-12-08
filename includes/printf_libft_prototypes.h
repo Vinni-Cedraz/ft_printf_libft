@@ -6,12 +6,12 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 13:21:51 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/08 13:01:38 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:48:37 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef PRINTF_LIBFT_PROTOTYPES_H
+# define PRINTF_LIBFT_PROTOTYPES_H
 
 #include "printf_libft_syslibs.h"
 
