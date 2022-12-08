@@ -6,13 +6,14 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 13:21:51 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/08 14:48:37 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:12:34 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_LIBFT_PROTOTYPES_H
 # define PRINTF_LIBFT_PROTOTYPES_H
 
+#include "printf_libft_structs.h"
 #include "printf_libft_syslibs.h"
 
 // PRINTF PROTAGONISTS:
@@ -27,10 +28,10 @@ int	parser(int c, va_list args);
 
 // auxiliary functions (writers):
 int	put_string(char *str);
-int	put_pointer(unsigned long long value);
 int	put_decimal(long value);
 int	put_usdecimal(long value);
 int	put_hex(unsigned long long value, int is_upper);
+int	put_pointer(unsigned long long value);
 
 // ASCII TYPE IDENTIFICATION FUNCTIONS:
 
@@ -76,7 +77,6 @@ int						ft_memcmp(const void *s1, const void *s2, size_t n);
 void					ft_bzero(void *s, size_t n);
 
 // STRING MANIPULATION FUNCTIONS:
-
 // THE ONES THAT RETURN A NUMBER:
 
 // ft_strlen returns the length of a string:
@@ -136,8 +136,7 @@ char					*ft_strmapi(char const *s, char (*f)(unsigned int,
 char					*ft_strtrim(char const *s1, char const *set);
 // ft_split receives a string and a set of chars, and it returns an array of
 // strings, each one being a substring of s1 that is delimited by a char c:
-char					**ft_split(char const *s, char c);
-
+t_split					*ft_split(char const *s, char c);
 // OUTPUT MANIPULATION FUNCTIONS:
 
 // ft_atoi converts a string to an int, it can handle negative numbers:

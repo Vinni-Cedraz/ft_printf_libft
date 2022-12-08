@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:49:25 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/11/19 19:13:20 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:33:53 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 // tool.arr is a double pointer to the array of strings
 // tool.i is a counter for the array of strings
 // ft_free_arr is called only if malloc fails
-char	**ft_split(char const *s, char c)
+t_split	*ft_split(char const *s, char c)
 {
-	t_ools	tool;
+	static	t_split	tool;
 
 	tool.i = -1;
 	tool.words = ft_word_counter(s, c);
@@ -39,5 +39,5 @@ char	**ft_split(char const *s, char c)
 		if (!tool.str_arr[tool.i])
 			ft_free_arr(tool.str_arr, (void **)tool.str_arr);
 	}
-	return (tool.str_arr);
+	return (&tool);
 }

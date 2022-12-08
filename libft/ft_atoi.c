@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:17 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/03 18:03:59 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:25:58 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_atoi(const char *nptr)
 {
-	register t_ools	nbr;
+	t_ools	nbr;
 
 	nbr.i = 0;
 	nbr.sign = 1;
