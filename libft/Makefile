@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 11:11:55 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/07 18:25:23 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/09 15:35:52 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ WHITE = \033[0;97m
 
 SRCS = ft_abs \
 ft_atoi \
+ft_free_t_split \
 ft_free_arr \
 ft_isalpha \
 ft_isascii \

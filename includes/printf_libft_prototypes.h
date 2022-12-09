@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 13:21:51 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/08 17:12:34 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:35:32 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,5 +182,7 @@ size_t					ft_putstr(char *str);
 size_t					ft_memorylen(void *ptr, size_t size);
 // this is ft_gnl (get next line):
 char					*ft_gnl(int fd);
+// this frees a t_split pointer:
+void					ft_free_t_split(t_split *split);
 
 #endif
