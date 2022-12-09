@@ -6,18 +6,12 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:49:25 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/08 17:33:53 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:41:20 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// tool.words stores the number of words in the string
-// tool.end stores the index of the last character of the string ended by char c
-// tool.start stores the index of the first character of the string
-// tool.arr is a double pointer to the array of strings
-// tool.i is a counter for the array of strings
-// ft_free_arr is called only if malloc fails
 t_split	*ft_split(char const *s, char c)
 {
 	static	t_split	tool;
