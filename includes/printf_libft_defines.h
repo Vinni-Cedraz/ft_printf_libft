@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:17:45 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/08 14:47:53 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/11 18:45:14 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define HEX "0123456789abcdef"
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10000
+#  define BUFFER_SIZE 10000
 # endif
 
 # define HEX_BASE "0123456789abcdef"
