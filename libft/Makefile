@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 11:11:55 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/09 15:35:52 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/11 12:42:24 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ NAME_PRNTF = ../libftprintf.a
 
 NAME_FDF = srcs_to_fdf.a
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -O3
 
 AR = ar -rs
 
@@ -63,6 +63,7 @@ ft_numlen \
 ft_putchar \
 ft_putchar_fd \
 ft_strlen \
+ft_atoi_base \
 ft_strncmp \
 ft_word_counter \
 ft_calloc \
@@ -112,6 +113,7 @@ ft_itoa_base \
 FDF_SRCS = ft_memchr \
 		   ft_strchr \
 			 ft_strlen \
+		 ft_atoi_base \
 			 ft_memcpy \
 			 ft_memmove \
 			 ft_memset \
