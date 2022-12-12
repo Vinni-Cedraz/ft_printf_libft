@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 13:21:51 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/11 18:45:29 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/12 08:35:34 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,5 +183,9 @@ char	*ft_gnl(int fd);
 void	ft_free_t_split(t_split *split);
 // this is ft_atoi_base, it converts a string to an int in a given base:
 int		ft_atoi_base(char *str, char *base);
+// cheks if its am uppercase hex number:
+int		ft_ishexup(int c);
+// hex low:
+int		ft_ishexlow(int c);
 
 #endif

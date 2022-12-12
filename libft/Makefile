@@ -6,7 +6,7 @@
 #    By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 11:11:55 by vcedraz-          #+#    #+#              #
-#    Updated: 2022/12/11 12:42:24 by vcedraz-         ###   ########.fr        #
+#    Updated: 2022/12/12 08:34:41 by vcedraz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,8 @@ ft_isalpha \
 ft_isascii \
 ft_isdigit \
 ft_isprint \
+ft_ishexup \
+ft_ishexlow \
 ft_memchr \
 ft_memcmp \
 ft_memcpy \
