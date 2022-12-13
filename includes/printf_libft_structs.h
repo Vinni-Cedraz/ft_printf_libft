@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:19:31 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/12/08 17:08:40 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:26:29 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,39 @@
 # include <stdlib.h>
 
 typedef unsigned char	t_uc;
+
+typedef struct s_point
+{
+	int					x;
+	int					y;
+	int					z;
+	int					color;
+}						t_point;
+
+typedef struct s_map
+{
+	int					width;
+	int					height;
+	t_point				**arr;
+}						t_map;
+
+typedef struct s_img
+{
+	void				*mlx_img;
+	char				*addr;
+	int					bpp;
+	int					line_len;
+	int					endian;
+}						t_img;
+
+typedef struct s_data
+{
+	void				*win_ptr;
+	void				*mlx_ptr;
+	int					hook;
+	t_img				*img;
+	t_map				*map;
+}						t_data;
 
 typedef struct s_list
 {
